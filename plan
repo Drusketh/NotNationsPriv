@@ -1,0 +1,2 @@
+all modules on main page need to be populated directly from the databse, not using session variables. This will make viewing other nation pages much cleaner, and allow spying with ease.
+

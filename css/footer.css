@@ -1,0 +1,15 @@
+.resholder {
+    position: relative;
+    left: 3rem;
+    right: 1rem;
+    background-color: rgb(202, 202, 202);
+    padding: 14px 16px;
+}
+
+.flora, .basic{
+    display: none;
+}
+
+.show {
+    display: block;
+}
