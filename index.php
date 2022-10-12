@@ -3,6 +3,7 @@
 ?>
 
 <?php
+    ob_start();
     require_once "includes/dbh.inc.php";
     require_once "includes/functions.inc.php";
 
@@ -86,7 +87,8 @@
         }
     }
     else {
-        header("location: login.php");
+        header("location: /login.php");
+        ob_end_flush();
         exit();
         // echo "
         //     <script>
