@@ -29,7 +29,7 @@ if (isset($_POST["submit"])) {
         exit();
     }
 
-    createNation($ng, $uid, $name, $capitol, $govt, $econ, $biome, $curtime);
+    createNation($ng, $uid, $name, $capitol, $biome, $govt, $econ, $curtime);
 }
 else {
     header("location: ../index.php");

@@ -3,11 +3,8 @@
 ?>
 
 <?php
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-    include("includes/dbh.inc.php");
-    include("includes/functions.inc.php");
+    require_once "includes/dbh.inc.php";
+    require_once "includes/functions.inc.php";
 
     if (isset($_SESSION["uid"])) {
         if (verifyUser($ng, $_SESSION["uid"], 0, 0) == true) {
@@ -42,11 +39,11 @@
 
                                 <div class='tab'>
                                     <p>Biome:</p>
-                                    <label><input class='radio' type='radio' name='biome' onclick='chngback(this);' value='1'>Temperate Forest</label><br>
-                                    <label><input class='radio' type='radio' name='biome' onclick='chngback(this);' value='2'>Desert</label><br>
-                                    <label><input class='radio' type='radio' name='biome' onclick='chngback(this);' value='3'>Grasslands</label><br>
-                                    <label><input class='radio' type='radio' name='biome' onclick='chngback(this);' value='4'>Tropical Forest</label><br>
-                                    <label><input class='radio' type='radio' name='biome' onclick='chngback(this);' value='5'>Tundra</label><br>
+                                    <label><input class='radio' type='radio' name='biome' onclick='chngback(this);' value='tn'>Tundra</label><br>
+                                    <label><input class='radio' type='radio' name='biome' onclick='chngback(this);' value='rf'>Tropical Forest</label><br>
+                                    <label><input class='radio' type='radio' name='biome' onclick='chngback(this);' value='de'>Desert</label><br>
+                                    <label><input class='radio' type='radio' name='biome' onclick='chngback(this);' value='tf'>Tempertate Forest</label><br>
+                                    <label><input class='radio' type='radio' name='biome' onclick='chngback(this);' value='gr'>Grasslands</label><br>
                                 </div>
                                 
                                 <div style='overflow:auto;'>
@@ -78,7 +75,9 @@
                             <h1 class='lname'>Leader Name: {$_SESSION['name']}</h1>
                             <h1 class='popul'>Population: {$_SESSION['population']}</h1>
                             <h1 class='tier'>Tier: {$_SESSION['tier']}</h1>
-                            <form action='req.inc.php' method='get'>press here to retrieve information</form>
+                            <form onsubmit='return showHint()' method='GET'>
+                                <button type='submit' name='submit'>requesttest</button>
+                            </form>
                         </div>
                     </div>
                 ";
@@ -89,7 +88,7 @@
         }
     }
     else {
-        header("location: /NG/login.php");
+        header("location: login.php");
         exit();
         // echo "
         //     <script>

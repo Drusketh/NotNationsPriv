@@ -1,5 +1,7 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 function emptyInputSignup($name, $email, $pass, $passv) {
     $result;
     if (empty($name) || empty($email) || empty($pass) || empty($passv)) {
@@ -49,7 +51,7 @@ function uidExists($ng, $name, $email) {
     $stmt = mysqli_stmt_init($ng);
     
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../signup.php?error=stmtfail");
+        header("location: /NG/signup.php?error=stmtfail");
         exit();
     }
     
@@ -70,25 +72,31 @@ function uidExists($ng, $name, $email) {
 }
 
 function createUser($ng, $name, $email, $pass, $curtime) {
-    $sql = "INSERT INTO user (name, email, pass, crtime, ltime) VALUES (?, ?, ?, ?, ?);";
+    $sql = "INSERT INTO user (name, email, pass, crtime, ltime, hasnation, ismod) VALUES (?, ?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($ng);
     
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../signup.php?error=stmtfail");
+        header("location: /NG/signup.php?error=stmtfail");
         exit();
     }
 
     $hashpass = password_hash($pass, PASSWORD_DEFAULT);
-    
-    mysqli_stmt_bind_param($stmt, "sssii", $name, $email, $hashpass, $curtime, $curtime);
+    $zero = 0;
+
+    mysqli_stmt_bind_param($stmt, "sssiiii", $name, $email, $hashpass, $curtime, $curtime, $zero, $zero);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
-    header("location: ../signup.php?error=success");
+    header("location: /NG/login.php?error=success");
     exit();
 }
 
 // Log In Functions
+
+function testecho(){
+    $ret = "test";
+    return true;
+}
 
 function emptyInputLogin($name, $pass) {
     $result;
@@ -106,14 +114,14 @@ function loginUser($ng, $name, $pass) {
     $ptoken = substr(str_shuffle(MD5(microtime())), 0, 32);
 
     if ($userExists === false) {
-        header("location: ../login.php?error=wronglogin", true);
+        header("location: /NG/login.php?error=wronglogin", true);
         exit();
     }
 
     $sql = "UPDATE `user` SET `ptoken` = ? WHERE `user`.`uid` = ?;";
     $stmt = mysqli_stmt_init($ng);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../index.php?error=stmtfail");
+        header("location: /NG/index.php?error=stmtfail");
         exit();
     }
     mysqli_stmt_bind_param($stmt, "si", $ptoken, $userExists["uid"]);
@@ -124,7 +132,7 @@ function loginUser($ng, $name, $pass) {
     $checkpass = password_verify($_POST["pass"], $hashpass);
 
     if ($checkpass === false) {
-        header("location: ../login.php?error=wrongpass", true);
+        header("location: /NG/login.php?error=wrongpass", true);
         exit();
     }
     else {
@@ -132,7 +140,7 @@ function loginUser($ng, $name, $pass) {
         $stmt = mysqli_stmt_init($ng);
             
         if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header("location: ../index.php?error=stmtfail");
+            header("location: /NG/index.php?error=stmtfail");
             exit();
         }
             
@@ -157,7 +165,7 @@ function loginUser($ng, $name, $pass) {
         $_SESSION["population"] = $nation["population"];
         $_SESSION["tier"]       = $nation["tier"];
 
-        header("location: ../index.php", true);
+        header("location: /NG/index.php", true);
         exit();
     }
 }
@@ -167,7 +175,7 @@ function verifyUser($ng, $uid, $hasnation, $ismod) {
     $stmt = mysqli_stmt_init($ng);
     
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../index.php?error=stmtfail"); // Error displaying backend data retrieval error
+        header("location: /NG/index.php?error=stmtfail"); // Error displaying backend data retrieval error
         exit();
     }
 
@@ -226,7 +234,7 @@ function nationExists($ng, $name) {
     $stmt = mysqli_stmt_init($ng);
         
     if (!mysqli_stmt_prepare($stmt, $sql)) {
-        header("location: ../index.php?error=stmtfail");
+        header("location: /NG/index.php?error=stmtfail");
         exit();
     }
         
@@ -246,7 +254,7 @@ function nationExists($ng, $name) {
     mysqli_stmt_close($stmt);
 }
 
-function createNation($ng, $uid, $name, $capitol, $govt, $econ, $biome, $curtime) {
+function createNation($ng, $uid, $name, $capitol, $biome, $govt, $econ, $curtime) {
     $basemoney = 5000;
     $basepower = 1000;
     $basefood = 1000;
@@ -257,7 +265,7 @@ function createNation($ng, $uid, $name, $capitol, $govt, $econ, $biome, $curtime
     $stmt = mysqli_stmt_init($ng);
 
     if (!mysqli_stmt_prepare($stmt, $nsql)) {
-        header("location: ../index.php?error=stmtfail");
+        header("location: /NG/index.php?error=stmtfail");
         exit();
     }
 
@@ -271,7 +279,7 @@ function createNation($ng, $uid, $name, $capitol, $govt, $econ, $biome, $curtime
     $stmt2 = mysqli_stmt_init($ng);
     
     if (!mysqli_stmt_prepare($stmt2, $usql)) {
-        header("location: ../index.php?error=stmtfail");
+        header("location: /NG/index.php?error=stmtfail");
         exit();
     }
 
@@ -284,7 +292,7 @@ function createNation($ng, $uid, $name, $capitol, $govt, $econ, $biome, $curtime
     $stmt3 = mysqli_stmt_init($ng);
 
     if (!mysqli_stmt_prepare($stmt3, $rsql)) {
-        header("location: ../index.php?error=stmtfail");
+        header("location: /NG/index.php?error=stmtfail");
         exit();
     }
 
@@ -296,7 +304,7 @@ function createNation($ng, $uid, $name, $capitol, $govt, $econ, $biome, $curtime
     $_SESSION["population"] = 50000;
     $_SESSION["hasnation"] = 1;
 
-    header("location: ../index.php?error=success");
+    header("location: /NG/index.php?error=success");
     exit();
 
 
