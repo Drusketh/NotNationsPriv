@@ -35,11 +35,15 @@ window.onclick = function(e) {
     }
 }
 
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("txtHint").innerHTML = this.responseText;
-    }
-};
-xmlhttp.open("GET", "gethint.php?q=" + str, true);
-xmlhttp.send();
+function showHint() {
+    // var xmlhttp = new XMLHttpRequest();
+    // xmlhttp.onreadystatechange = function() {
+    //     if (this.readyState == 4 && this.status == 200) {
+    //         document.getElementById("txtHint").innerHTML = this.responseText;
+    //     }
+    // };
+    // xmlhttp.open("GET", "gethint.php?q=" + str, true);
+    // xmlhttp.send();
+
+    
+}

@@ -20,7 +20,7 @@ html, body {
   
 .bg-image {
     z-index: -10;
-    background: url(../img/tf.jpg);
+    background: url(../img/1.jpg);
     min-height: 60vh;
     background-position: center;
     background-attachment: fixed;
