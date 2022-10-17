@@ -43,7 +43,7 @@
         </div>  
     </body>
 </html>
-https://stackoverflow.com/questions/6164507/change-the-content-of-a-div-based-on-selection-from-dropdown-menu
+
 <?php
     ob_end_flush()
 ?>

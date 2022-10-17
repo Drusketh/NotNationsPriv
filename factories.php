@@ -10,59 +10,70 @@
     include("includes/functions.inc.php");
 ?>
 
-<div class='flexcontainer'>
-    <?php
-        $sql = "SELECT * FROM factories WHERE ID = ?;";
-        $stmt = mysqli_stmt_init($ng);
+<div class='gamecontent'>
+    <div class='flexcontainer'>
+        <?php
+            $sql = "SELECT * FROM factories WHERE ID = ?;";
+            $stmt = mysqli_stmt_init($ng);
 
-        if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header("location: ../index.php?error=holyshitwtf");
-            exit();
-        };
+            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                header("location: ../index.php?error=holyshitwtf");
+                exit();
+            };
 
-        $uid = 1;
+            $uid = 1;
 
-        mysqli_stmt_bind_param($stmt, "i", $uid);
-        mysqli_stmt_execute($stmt);
-
-        $result = mysqli_stmt_get_result($stmt);
-        $resultarr = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-        echo json_encode ($resultarr);
-
-        mysqli_stmt_close($stmt);
-    ?>
+            mysqli_stmt_bind_param($stmt, "i", $uid);
+            mysqli_stmt_execute($stmt);
+            $resultarr = mysqli_fetch_array(mysqli_stmt_get_result($stmt), MYSQLI_NUM);
+            mysqli_stmt_close($stmt);
 
 
-    <div class='flexchild'>
-        <p>title</p>
-    </div>
-    <div class='flexchild'>
-        <p>title</p>
-    </div>
-    <div class='flexchild'>
-        <p>title</p>
-    </div>
-    <div class='flexchild'>
-        <p>title</p>
-    </div>
-    <div class='flexchild'>
-        <p>title</p>
-    </div>
-    <div class='flexchild'>
-        <p>title</p>
-    </div>
-    <div class='flexchild'>
-        <p>title</p>
-    </div>
-    <div class='flexchild'>
-        <p>title</p>
-    </div>
-    <div class='flexchild'>
-        <p>title</p>
-    </div>
-    <div class='flexchild'>
-        <p>title</p>
+            for ($x = 2; $x < sizeof($resultarr); $x+=3) {
+                $count = $resultarr[$x];
+                $progression = $resultarr[$x+1];
+                $level = $resultarr[$x+2];
+
+                echo("
+                    <div class='flexchild'>
+                        <h3>ex factory</h3><br>
+                        <p>facnum: $count</p>
+                        <p>amount: $progression/24</p>
+                        <p>level: $level</p>
+                        <button>collect</button>
+                    </div>
+                    <div class='flexchild'>
+                        <h3>ex factory</h3><br>
+                        <p>facnum: $count</p>
+                        <p>amount: $progression/24</p>
+                        <p>level: $level</p>
+                        <button>collect</button>
+                    </div>
+                    <div class='flexchild'>
+                        <h3>ex factory</h3><br>
+                        <p>facnum: $count</p>
+                        <p>amount: $progression/24</p>
+                        <p>level: $level</p>
+                        <button>collect</button>
+                    </div>
+                    <div class='flexchild'>
+                        <h3>ex factory</h3><br>
+                        <p>facnum: $count</p>
+                        <p>amount: $progression/24</p>
+                        <p>level: $level</p>
+                        <button>collect</button>
+                    </div>
+                    <div class='flexchild'>
+                        <h3>ex factory</h3><br>
+                        <p>facnum: $count</p>
+                        <p>amount: $progression/24</p>
+                        <p>level: $level</p>
+                        <button>collect</button>
+                    </div>
+                    
+                ");
+            } 
+        ?>
     </div>
 </div>
 

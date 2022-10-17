@@ -71,23 +71,26 @@ html, body {
 }
 
 .flexchild {
-    width: 50px;
-    margin: 2rem;
-    background-color: #00a0a0;
+    flex: 0 0 165px;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
+    background-color: #ffffff; 
 }
 
 .gamecontent {
     height: 100%;
     width: 100%;
     padding: 2rem 5rem;
-    background-color: #fff;
+    background-color: #f5f5f5;
 }
   
-.gamecontent div {
+/* .gamecontent div {
     width: 100%;
     max-width: 42rem;
     margin: 0 auto;
-}
+} */
   
 .gamecontent p {
     font-size: 1.05rem;
