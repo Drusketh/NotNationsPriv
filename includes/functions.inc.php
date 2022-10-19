@@ -288,7 +288,7 @@ function createNation($ng, $uid, $name, $capitol, $biome, $govt, $econ, $curtime
     mysqli_stmt_close($stmt2);
 
 
-    $rsql = "INSERT INTO resources (uid, money, power, food) VALUES (?, ?, ?, ?);";
+    $rsql = "INSERT INTO resources (uid, money, food, power, bm, cg, metal, fuel, ammunition) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt3 = mysqli_stmt_init($ng);
 
     if (!mysqli_stmt_prepare($stmt3, $rsql)) {
@@ -296,7 +296,7 @@ function createNation($ng, $uid, $name, $capitol, $biome, $govt, $econ, $curtime
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt3, "iiii", $uid, $basemoney, $basepower, $basefood);
+    mysqli_stmt_bind_param($stmt3, "iiiiiiiii", $uid, $basemoney, $basepower, $basefood, 0, 0, 0, 0, 0);
     mysqli_stmt_execute($stmt3);
     mysqli_stmt_close($stmt3);
 

@@ -71,17 +71,8 @@
                 ";
             }
             else { // Nation Page
-                echo "
-                    <div class='floatmenu'>
-                        <div class='white'>
-                            <h1 class='nname'>{$_SESSION['nname']}</h1>
-                            <h1 class='lname'>Leader Name: {$_SESSION['name']}</h1>
-                            <h1 class='popul'>Population: {$_SESSION['population']}</h1>
-                            <h1 class='tier'>Tier: {$_SESSION['tier']}</h1>
-                            <form action='req.inc.php' method='get'>press here to retrieve information</form>
-                        </div>
-                    </div>
-                ";
+                header("location: nation.php");
+                exit();
             }
         }
         else {

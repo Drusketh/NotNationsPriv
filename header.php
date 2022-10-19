@@ -24,15 +24,14 @@
     </head>
     <body>
         <div id="mySidebar" class="sidebar">
-            <a href="#">aaaaa</a>
-            <a href="#">aaaaa</a>
-            <a href="#">aaaaa</a>
-            <a href="#">aaaaa</a>
+            <h1>Nations</h1>
+            <a href="nation.php">Home</a>
+            <a href="factories.php">Factories</a>
         </div>
 
         <div id="page-container" class="page-container">
             <div class="header">
-                <button class="openbtn" onclick="sideToggle()">&#9776; Open Menu</button>
+                <button class="openbtn" onclick="sideToggle()">&#9776;</button>
 
                 <div class="dropdown">
                     <button class="dropbtn" id="dropbtn" onClick="drop(this.id);">Menu</button>
