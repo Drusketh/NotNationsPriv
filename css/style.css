@@ -68,6 +68,20 @@ html, body {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    /* position: relative; */
+}
+
+.faccount {
+    padding: 2px 7px;
+    border-radius: 1rem;
+    background-color: #ff0000;
+    color: #ffffff;
+    text-align: center;
+    float: right;
+    /* display: inline-block; */
+    position: relative;
+    top: -30px;
+    right: -30px;
 }
 
 .flexchild {

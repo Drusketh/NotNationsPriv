@@ -36,41 +36,13 @@
 
                 echo("
                     <div class='flexchild'>
+                        <div class=faccount>$count</div>
                         <h3>ex factory</h3><br>
                         <p>facnum: $count</p>
                         <p>amount: $progression/24</p>
                         <p>level: $level</p>
                         <button>collect</button>
                     </div>
-                    <div class='flexchild'>
-                        <h3>ex factory</h3><br>
-                        <p>facnum: $count</p>
-                        <p>amount: $progression/24</p>
-                        <p>level: $level</p>
-                        <button>collect</button>
-                    </div>
-                    <div class='flexchild'>
-                        <h3>ex factory</h3><br>
-                        <p>facnum: $count</p>
-                        <p>amount: $progression/24</p>
-                        <p>level: $level</p>
-                        <button>collect</button>
-                    </div>
-                    <div class='flexchild'>
-                        <h3>ex factory</h3><br>
-                        <p>facnum: $count</p>
-                        <p>amount: $progression/24</p>
-                        <p>level: $level</p>
-                        <button>collect</button>
-                    </div>
-                    <div class='flexchild'>
-                        <h3>ex factory</h3><br>
-                        <p>facnum: $count</p>
-                        <p>amount: $progression/24</p>
-                        <p>level: $level</p>
-                        <button>collect</button>
-                    </div>
-                    
                 ");
             } 
         ?>
@@ -86,13 +58,12 @@
             <input type='text' name='cost' placeholder='cost to build'>
         </li>
         <li>
-            <label for="input1">Input1:</label>
-            <select name="input1">
-                <option value="money">money</option>
-                <option value="food">food</option>
-                <option value="power" selected>power</option>
-                <option value="BM's">BM</option>
-            </select>
+            <input type="text" name="i1" placeholder='input1'><input type="text" name="i1ct"><br>
+            <input type="text" name="i2" placeholder='input2'><input type="text" name="i2ct"><br>
+            <input type="text" name="i3" placeholder='input3'><input type="text" name="i3ct"><br>
+            <input type="text" name="i4" placeholder='input4'><input type="text" name="i4ct"><br>
+            <input type="text" name="o1" placeholder='output1'><input type="text" name="o1ct"><br>
+            <input type="text" name="o1" placeholder='output2'><input type="text" name="o2ct">
         </li>
         <li>
             <button type='submit' name='submit'>Submit</button>
