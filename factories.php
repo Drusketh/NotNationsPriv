@@ -47,29 +47,33 @@
             } 
         ?>
     </div>
+
+    <form class='facform' action='includes/mkfac.inc.php' method='POST'>
+        <ul>
+            <li>
+                <input type='text' name='name' placeholder='Name'>
+            </li>
+            <li>
+                <p>Build Cost</p>
+                <input type="text" name="cost" placeholder='cost'><input type="text" name="costct" placeholder='count'><br>
+            </li>
+            <li>
+                <p>Collection</p>
+                <input type="text" name="i1" placeholder='input1'><input type="text" name="i1ct" placeholder='count'><br>
+                <input type="text" name="i2" placeholder='input2'><input type="text" name="i2ct" placeholder='count'><br>
+                <input type="text" name="i3" placeholder='input3'><input type="text" name="i3ct" placeholder='count'><br>
+                <input type="text" name="i4" placeholder='input4'><input type="text" name="i4ct" placeholder='count'><br>
+                <input type="text" name="o1" placeholder='output1'><input type="text" name="o1ct" placeholder='count'><br>
+                <input type="text" name="o1" placeholder='output2'><input type="text" name="o2ct" placeholder='count'>
+            </li>
+            <li>
+                <button type='submit' name='submit'>Submit</button>
+            </li>
+        </ul>
+    </form>
 </div>
 
-<form class='facform' action='includes/makefactory.inc.php' method='POST'>
-    <ul>
-        <li>
-            <input type='text' name='name' placeholder='Name'>
-        </li>
-        <li>
-            <input type='text' name='cost' placeholder='cost to build'>
-        </li>
-        <li>
-            <input type="text" name="i1" placeholder='input1'><input type="text" name="i1ct"><br>
-            <input type="text" name="i2" placeholder='input2'><input type="text" name="i2ct"><br>
-            <input type="text" name="i3" placeholder='input3'><input type="text" name="i3ct"><br>
-            <input type="text" name="i4" placeholder='input4'><input type="text" name="i4ct"><br>
-            <input type="text" name="o1" placeholder='output1'><input type="text" name="o1ct"><br>
-            <input type="text" name="o1" placeholder='output2'><input type="text" name="o2ct">
-        </li>
-        <li>
-            <button type='submit' name='submit'>Submit</button>
-        </li>
-    </ul>
-</form>
+
 ALTER TABLE `factories` ADD `name(ct)` INT(6) NOT NULL DEFAULT '0' AFTER `dairylevel`, ADD `progression` INT(2) NOT NULL DEFAULT '0' AFTER `name(ct)`, ADD `level` INT(1) NOT NULL DEFAULT '0' AFTER `progression`; ?>
 
 <?php
