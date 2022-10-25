@@ -4,8 +4,26 @@ session_start();
 if (isset($_POST["submit"])) {
     $uid = $_SESSION["uid"];
     $name = $_POST["name"];
+<<<<<<< Updated upstream
     $body = $_POST["cost"];
     $sev = $_POST["costct"];
+=======
+    $cost = $_POST["name"];
+    $input1 = $_POST["i1"];
+    $input1ct = $_POST["i1ct"];
+    $input2 = $_POST["i2"];
+    $input2ct = $_POST["i2ct"];
+    $input3 = $_POST["i3"];
+    $input3ct = $_POST["i3ct"];
+    $input4 = $_POST["i4"];
+    $input4ct = $_POST["i4ct"];
+    // $input5 = $_POST["i5"];
+    // $input5ct = $_POST["i5ct"];
+    $output1 = $_POST["o1"];
+    $output1ct = $_POST["o1ct"];
+    $output2 = $_POST["o2"];
+    $output2ct = $_POST["o2ct"];
+>>>>>>> Stashed changes
     $time = time();
 
     // <form class='facform' action='includes/makefactory.inc.php' method='POST'>
