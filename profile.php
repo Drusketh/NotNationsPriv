@@ -2,5 +2,5 @@
     ob_start();
     echo("e");
 
-    header("location: profile2.php");
+    header("location: profile.php");
 ?>

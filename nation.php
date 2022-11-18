@@ -12,34 +12,34 @@
     if (isset($_SESSION["uid"])) {
         if (verifyUser($ng, $_SESSION["uid"], 0, 0) == true) {
             if ($_SESSION["hasnation"] == 1) { //Nation Creation
-                class Unit {
-                    // Properties
-                    public $name;
-                    public $xp;
-                    public $level;
-                    public $health;
+                // class Unit {
+                //     // Properties
+                //     public $name;
+                //     public $xp;
+                //     public $level;
+                //     public $health;
 
-                    // Methods
-                    function params($name, $xp, $level, $health, $armor, $man) {
-                        $this->name = $name;
-                    }
-                    function get_name() {
-                        return $this->name;
-                    }
-                    function set_color($color) {
-                        $this->color = $color;
-                    }
-                    function get_color() {
-                        return $this->color;
-                    }
-                }
+                //     // Methods
+                //     function params($name, $xp, $level, $health, $armor, $man) {
+                //         $this->name = $name;
+                //     }
+                //     function get_name() {
+                //         return $this->name;
+                //     }
+                //     function set_color($color) {
+                //         $this->color = $color;
+                //     }
+                //     function get_color() {
+                //         return $this->color;
+                //     }
+                // }
 
-                $apple = new Fruit();
-                $apple->set_name('Apple');
-                $apple->set_color('Red');
-                echo "Name: " . $apple->get_name();
-                echo "<br>";
-                echo "Color: " . $apple->get_color();
+                // $apple = new Fruit();
+                // $apple->set_name('Apple');
+                // $apple->set_color('Red');
+                // echo "Name: " . $apple->get_name();
+                // echo "<br>";
+                // echo "Color: " . $apple->get_color();
                 
                 echo "
                     <div class='floatmenu'>
