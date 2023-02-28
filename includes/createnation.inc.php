@@ -13,14 +13,14 @@ if (isset($_POST["submit"])) {
     require_once "functions.inc.php";
 
     if (emptyInputNation($name, $capitol, $govt, $econ, $biome) !== false) {
-        echo("uid " . $uid . " name " . $name . " capitol " . $capitol . " govt " . $govt . " econ " . $econ . " biome " . $biome . " curtime " . $curtime);
-        echo(empty($uid));
-        echo(empty($name));
-        echo(empty($capitol));
-        echo(empty($govt));
-        echo(empty($econ));
-        echo(empty($biome));
-        // header("location: ../index.php?error=emptyinput");
+        // echo("uid " . $uid . " name " . $name . " capitol " . $capitol . " govt " . $govt . " econ " . $econ . " biome " . $biome . " curtime " . $curtime);
+        // echo(empty($uid));
+        // echo(empty($name));
+        // echo(empty($capitol));
+        // echo(empty($govt));
+        // echo(empty($econ));
+        // echo(empty($biome));
+        header("location: ../index.php?error=emptyinput");
         exit();
     }
     if (invalidNC($name, $capitol) !== false) {

@@ -255,10 +255,6 @@ function nationExists($ng, $name) {
 }
 
 function createNation($ng, $uid, $name, $capitol, $biome, $govt, $econ, $curtime) {
-    $basemoney = 5000;
-    $basepower = 1000;
-    $basefood = 1000;
-
     $basepop = 50000;
     $basetier = 1;
     $nsql = "INSERT INTO nation (uid, name, capitol, biome, government, econ, crtime, population, tier) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -287,6 +283,14 @@ function createNation($ng, $uid, $name, $capitol, $biome, $govt, $econ, $curtime
     mysqli_stmt_execute($stmt2);
     mysqli_stmt_close($stmt2);
 
+    $basemoney = 5000;
+    $basepower = 1000;
+    $basefood = 1000;
+    $basebm = 100;
+    $basecg = 0;
+    $basemetal = 0;
+    $basefuel = 0;
+    $baseammo = 0;
 
     $rsql = "INSERT INTO resources (uid, money, food, power, bm, cg, metal, fuel, ammunition) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt3 = mysqli_stmt_init($ng);
@@ -296,7 +300,7 @@ function createNation($ng, $uid, $name, $capitol, $biome, $govt, $econ, $curtime
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt3, "iiiiiiiii", $uid, $basemoney, $basepower, $basefood, 0, 0, 0, 0, 0);
+    mysqli_stmt_bind_param($stmt3, "iiiiiiiii", $uid, $basemoney, $basefood, $basepower, $basebm, $basecg, $basemetal, $basefuel, $baseammo);
     mysqli_stmt_execute($stmt3);
     mysqli_stmt_close($stmt3);
 
@@ -304,9 +308,6 @@ function createNation($ng, $uid, $name, $capitol, $biome, $govt, $econ, $curtime
     $_SESSION["population"] = 50000;
     $_SESSION["hasnation"] = 1;
 
-    header("location: /NG/index.php?error=success");
+    header("location: /NG/nation.php");
     exit();
-
-
-    
 }
