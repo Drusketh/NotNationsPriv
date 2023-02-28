@@ -24,20 +24,20 @@
 
                                 <div class='tab'>
                                 <p>Government Type:</p>
-                                    <label><input class='radio' type='radio' name='govt' value='0'>Dictatorship</label><br>
-                                    <label><input class='radio' type='radio' name='govt' value='1'>Communist</label><br>
-                                    <label><input class='radio' type='radio' name='govt' value='2'>Socialist</label><br>
-                                    <label><input class='radio' type='radio' name='govt' value='3'>Democracy</label><br>
-                                    <label><input class='radio' type='radio' name='govt' value='4'>Theocracy</label><br>
-                                    <label><input class='radio' type='radio' name='govt' value='5'>Monarchy</label><br>
+                                    <label><input class='radio' type='radio' name='govt' value='1'>Dictatorship</label><br>
+                                    <label><input class='radio' type='radio' name='govt' value='2'>Communist</label><br>
+                                    <label><input class='radio' type='radio' name='govt' value='3'>Socialist</label><br>
+                                    <label><input class='radio' type='radio' name='govt' value='4'>Democracy</label><br>
+                                    <label><input class='radio' type='radio' name='govt' value='5'>Theocracy</label><br>
+                                    <label><input class='radio' type='radio' name='govt' value='6'>Monarchy</label><br>
                                 </div>
 
                                 <div class='tab'>
                                     <p>Economy Type:</p>
-                                    <label><input class='radio' type='radio' name='econ' value='0'>Free Market Capitalism</label><br>
-                                    <label><input class='radio' type='radio' name='econ' value='1'>State Capitalism</label><br>
-                                    <label><input class='radio' type='radio' name='econ' value='2'>Communist</label><br>
-                                    <label><input class='radio' type='radio' name='econ' value='3'>Socialist</label><br>
+                                    <label><input class='radio' type='radio' name='econ' value='1'>Free Market Capitalism</label><br>
+                                    <label><input class='radio' type='radio' name='econ' value='2'>State Capitalism</label><br>
+                                    <label><input class='radio' type='radio' name='econ' value='3'>Communist</label><br>
+                                    <label><input class='radio' type='radio' name='econ' value='4'>Socialist</label><br>
                                 </div>
 
                                 <div class='tab'>
