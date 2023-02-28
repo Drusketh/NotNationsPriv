@@ -13,6 +13,7 @@ if (isset($_POST["submit"])) {
     require_once "functions.inc.php";
 
     if (emptyInputNation($name, $capitol, $govt, $econ, $biome) !== false) {
+        echo()
         header("location: ../index.php?error=emptyinput");
         exit();
     }
