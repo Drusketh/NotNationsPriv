@@ -41,6 +41,13 @@
                         <a href="login.php">Login</a>
                         <a href="/NG/includes/logout.inc.php">Logout</a>
                         <a href="bugreport.php">Report Bug</a>
+                        <?php
+                            if (isset($_SESSION["uid"])) {
+                                if ($_SESSION["ismod"] == 1) {
+                                    echo("<a href='admanage.php'>Admin Panel</a>");
+                                }
+                            }
+                        ?>
                     </div>
                 </div> 
             </div>

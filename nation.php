@@ -11,7 +11,7 @@
 
     if (isset($_SESSION["uid"])) {
         if (verifyUser($ng, $_SESSION["uid"], 0, 0) == true) {
-            if ($_SESSION["hasnation"] == 1) { //Nation Creation
+            if ($_SESSION["hasnation"] == 1) { 
                 // class Unit {
                 //     // Properties
                 //     public $name;

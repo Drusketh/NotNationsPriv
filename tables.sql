@@ -44,6 +44,18 @@ CREATE TABLE `resources` (
   `ammunition` int(6) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE construct (
+    
+    name varchar(32) not null,
+    email varchar(254) not null,
+    pass varchar(128) not null,
+    crtime int(10) not null,
+    ltime int(10) not null,
+    ptoken varchar(32) not null DEFAULT CURRENT_TIMESTAMP,
+    hasnation int(1) not null,
+    ismod int(1) not null
+);
+
 CREATE TABLE factories (
     id int(5) not null PRIMARY KEY AUTO_INCREMENT,
     uid int(5) not null,
@@ -133,3 +145,4 @@ CREATE TABLE factest1 (
     z2 int(5) not null,
 );
 
+INSERT INTO fac (factory_id, player_id, name, cost) VALUES (1, 3, "testfac", "1 dabloon");

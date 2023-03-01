@@ -1,5 +1,3 @@
-
-            
         <?php
         if (isset($_SESSION["uid"])) {
             if (verifyUser($ng, $_SESSION["uid"], 0, 0) == true) {
