@@ -1,4 +1,4 @@
-CREATE TABLE user (
+CREATE TABLE `user` (
     uid int(5) not null PRIMARY KEY AUTO_INCREMENT,
     name varchar(32) not null,
     email varchar(254) not null,
@@ -10,7 +10,7 @@ CREATE TABLE user (
     ismod int(1) not null
 );
 
-CREATE TABLE bugs (
+CREATE TABLE `bugs` (
     id int(5) not null PRIMARY KEY AUTO_INCREMENT,
     uid int(5) not null,
     title varchar(64) not null,
@@ -19,14 +19,15 @@ CREATE TABLE bugs (
     time int(10) not null
 );
 
-CREATE TABLE nation (
+CREATE TABLE `nation` (
     id int(5) not null PRIMARY KEY AUTO_INCREMENT,
+    crtime int(10) not null,
     uid int(5) not null,
     name varchar(16) not null,
     capitol varchar(16) not null,
     biome int(1) not null,
     government int(1) not null,
-    crtime int(10) not null,
+    econ int(1) not null,
     population int(9) not null,
     tier int(10) not null
 );
