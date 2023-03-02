@@ -46,7 +46,6 @@ CREATE TABLE `resources` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE construct (
-    
     name varchar(32) not null,
     email varchar(254) not null,
     pass varchar(128) not null,
@@ -57,6 +56,19 @@ CREATE TABLE construct (
     ismod int(1) not null
 );
 
+CREATE TABLE facref (
+    id int(3) not null PRIMARY KEY AUTO_INCREMENT,
+    name varchar(32) not null,
+    cost text not null,
+    level int(1) not null
+);
+
+CREATE TABLE resref (
+    id int(3) not null PRIMARY KEY AUTO_INCREMENT,
+    name varchar(32) not null,
+    icon text not null
+);
+
 CREATE TABLE factories (
     id int(5) not null PRIMARY KEY AUTO_INCREMENT,
     uid int(5) not null,
@@ -64,8 +76,6 @@ CREATE TABLE factories (
     dairyprog int(2) not null,
     dairylevel int(1) not null,
 );
-
-
 
 CREATE TABLE factest1 (
     id int(5) not null PRIMARY KEY AUTO_INCREMENT,

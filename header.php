@@ -53,3 +53,4 @@
             </div>
 
             <div class="bg-image"></div>
+            <div class="spacer"></div>

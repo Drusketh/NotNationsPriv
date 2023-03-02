@@ -1,0 +1,62 @@
+Folder PATH listing for volume Acer
+Volume serial number is 3861-809B
+C:.
+¦   .gitattributes
+¦   .htaccess
+¦   admanage.php
+¦   bugreport.php
+¦   construct.php
+¦   empty.php
+¦   factories.php
+¦   footer.php
+¦   header.php
+¦   index.php
+¦   login.php
+¦   nation.php
+¦   plan
+¦   profile.php
+¦   README.md
+¦   resinc.php
+¦   sidebar.php
+¦   signup.php
+¦   sql.php
+¦   tables.sql
+¦   tree.txt
+¦   
++---css
+¦       dropdown.css
+¦       footer.css
+¦       reset.css
+¦       sidebar.css
+¦       style.css
+¦       
++---img
+¦       1.jpg
+¦       2.jpg
+¦       3.jpg
+¦       4.jpg
+¦       5.jpg
+¦       N3.png
+¦       
++---includes
+¦       bugfunctions.inc.php
+¦       bugreport.inc.php
+¦       createnation.inc.php
+¦       dbh.inc.php
+¦       functions.inc.php
+¦       ip-get.php
+¦       login.inc.php
+¦       logout.inc.php
+¦       mkfac.inc.php
+¦       req.inc.php
+¦       signup.inc.php
+¦       update.inc.php
+¦       
++---js
+        forms.js
+        jquery-3.6.1.min.js
+        main.js
+        map.js
+        p5.js
+        sidebar.js
+        

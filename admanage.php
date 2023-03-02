@@ -24,7 +24,54 @@
                 exit();
             }
             else {
-                echo("guvvi");
+                echo("
+                    <div class='admanage-container'>
+                        <div class='admanage-panel'>
+                            <h3>Resource List</h3><br>
+                            <div class='resourcelist'>
+                                <ul>");
+                                    $sql = "SELECT * FROM `resref`;";
+
+                                    $stmt = mysqli_stmt_init($ng);
+                                                                            
+                                    if (!mysqli_stmt_prepare($stmt, $sql)) {
+                                        header("location: /NG/admanage.php?error=stmtfail");
+                                        exit();
+                                    }
+                                                                            
+                                    mysqli_stmt_execute($stmt);
+                                
+                                    $query = mysqli_stmt_get_result($stmt);
+                                    
+                                    mysqli_stmt_close($stmt);
+
+                                    $resref = array();
+                                    while ($row = mysqli_fetch_assoc($query)) {
+                                        echo("<li>" . $row['name'] . "<li>");
+                                    }
+                            echo("</ul>
+                            </div>
+                        </div>
+                        <div class='admanage-panel'>
+                            <h3>Resource Creator</h3><br>
+                            <div class=''>
+                                <form class='resource' action='includes/mkres.inc.php' method='POST'>
+                                    <ul>
+                                        <li>
+                                            <input type='text' name='name' placeholder='Resource Name'>
+                                        </li>
+                                        <li>
+                                            <input type='file' name='icon' accept='image/png, image/jpeg'>
+                                        </li>
+                                        <li>
+                                            <button type='submit' name='submit'>Create Resource</button>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                ");
             }
         }
     }

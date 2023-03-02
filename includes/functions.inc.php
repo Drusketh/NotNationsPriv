@@ -2,6 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+
 function emptyInputSignup($name, $email, $pass, $passv) {
     $result;
     if (empty($name) || empty($email) || empty($pass) || empty($passv)) {
@@ -311,3 +312,19 @@ function createNation($ng, $uid, $name, $capitol, $biome, $govt, $econ, $curtime
     header("location: /NG/nation.php");
     exit();
 }
+
+function makeResource($ng, $name, $icon) {
+    $sql = "INSERT INTO resref (name, icon) VALUES (?, ?);";
+    $stmt = mysqli_stmt_init($ng);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: /NG/index.php?error=stmtfail");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ss", $name, $icon);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+}
+
+?>
