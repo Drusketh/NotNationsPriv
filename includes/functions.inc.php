@@ -322,6 +322,13 @@ function makeResource($ng, $name, $icon) {
         exit();
     }
 
+    $filename = $_FILES['icon']['name'];
+    $filetmpname = $_FILES['icon']['tmp_name'];
+    
+    $folder = 'img/resources/';
+    //function for saving the uploaded images in a specific folder
+    move_uploaded_file($filetmpname, $folder.$filename);
+
     mysqli_stmt_bind_param($stmt, "ss", $name, $icon);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);

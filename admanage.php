@@ -55,7 +55,7 @@
                         <div class='admanage-panel'>
                             <h3>Resource Creator</h3><br>
                             <div class=''>
-                                <form class='resource' action='includes/mkres.inc.php' method='POST'>
+                                <form class='resource' action='includes/mkres.inc.php' method='POST' enctype='multipart/form-data'>
                                     <ul>
                                         <li>
                                             <input type='text' name='name' placeholder='Resource Name'>
@@ -64,7 +64,7 @@
                                             <input type='file' name='icon' accept='image/png, image/jpeg'>
                                         </li>
                                         <li>
-                                            <button type='submit' name='submit'>Create Resource</button>
+                                            <button type='submit' name='submit' value='upload'>Create Resource</button>
                                         </li>
                                     </ul>
                                 </form>
