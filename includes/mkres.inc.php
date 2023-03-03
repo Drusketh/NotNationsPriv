@@ -8,9 +8,9 @@
 
     if (isset($_POST["submit"])) {
         $name = $_POST["name"];
-        $icon = $_POST["icon"];
-
-        if (emptyInputLogin($name, $icon) !== false) {
+        $icon = $_FILES['icon'];
+        
+        if (empty($name) || empty($icon['name']) !== false) {   
             header("location: /NG/admanage.php?error=emptyinput");
             exit();
         }

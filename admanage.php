@@ -61,7 +61,7 @@
                                             <input type='text' name='name' placeholder='Resource Name'>
                                         </li>
                                         <li>
-                                            <input type='file' name='icon' accept='image/png, image/jpeg'>
+                                            <input type='file' name='icon' accept='image/png, image/jpeg, image/webp'>
                                         </li>
                                         <li>
                                             <button type='submit' name='submit' value='upload'>Create Resource</button>
