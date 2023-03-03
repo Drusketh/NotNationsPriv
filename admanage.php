@@ -47,7 +47,7 @@
 
                                     $resref = array();
                                     while ($row = mysqli_fetch_assoc($query)) {
-                                        echo("<li>" . $row['name'] . "<li>");
+                                        echo("<li><img src='img/resources/".$row['name']."_icon.webp'>" . $row['name'] . "<li>");
                                     }
                             echo("</ul>
                             </div>

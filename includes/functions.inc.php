@@ -327,7 +327,7 @@ function makeResource($ng, $name, $icon) {
         
     $folder = '../img/resources/';
     if (file_exists($folder.$filename) !==false) {
-        header("location: /NG/admanage.php?error=emptyinput");
+        header("location: /NG/admanage.php?error=fileexists");
         exit();
     }
     else {
