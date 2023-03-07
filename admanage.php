@@ -69,6 +69,49 @@
                                 </form>
                             </div>
                         </div>
+                        <div class='admanage-panel'>
+                            <h3>Resource List</h3><br>
+                            <div class='resourcelist'>
+                                <ul>");
+                                    $sql = "SELECT * FROM `resref`;";
+
+                                    $stmt = mysqli_stmt_init($ng);
+                                                                            
+                                    if (!mysqli_stmt_prepare($stmt, $sql)) {
+                                        header("location: /NG/admanage.php?error=stmtfail");
+                                        exit();
+                                    }
+                                                                            
+                                    mysqli_stmt_execute($stmt);
+                                
+                                    $query = mysqli_stmt_get_result($stmt);
+                                    
+                                    mysqli_stmt_close($stmt);
+
+                                    while ($row = mysqli_fetch_assoc($query)) {
+                                        echo("<li><img src='img/resources/".$row['name']."_icon.webp'>" . $row['name'] . "<li>");
+                                    }
+                            echo("</ul>
+                            </div>
+                        </div>
+                        <div class='admanage-panel'>
+                            <h3>Resource Creator</h3><br>
+                            <div class=''>
+                                <form class='resource' action='includes/mkres.inc.php' method='POST' enctype='multipart/form-data'>
+                                    <ul>
+                                        <li>
+                                            <input type='text' name='name' placeholder='Resource Name'>
+                                        </li>
+                                        <li>
+                                            <input type='file' name='icon' accept='image/png, image/jpeg, image/webp'>
+                                        </li>
+                                        <li>
+                                            <button type='submit' name='submit' value='upload'>Create Resource</button>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 ");
             }

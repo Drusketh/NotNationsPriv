@@ -6,7 +6,7 @@
                     $stmt = mysqli_stmt_init($ng);
 
                     if (!mysqli_stmt_prepare($stmt, $sql)) {
-                        header("location: ../index.php?error=holyshitwtf");
+                        header("location: ../index.php?error=adm1");
                         exit();
                     };
 
@@ -46,7 +46,11 @@
                 </div> 
                 <div class='resholder' id='resholder'>
                     <div class='basic show' id='basic'>");
-                        $rsql = "SELECT * FROM `resources` where uid = ?;";
+                        //
+                        // RETREIVE RESOURCES, SAVE TO $resources
+                        //
+
+                        $rsql = "SELECT `resources` FROM `nation` where uid = ?;";
                         $rstmt = mysqli_stmt_init($ng);
                                                                 
                         if (!mysqli_stmt_prepare($rstmt, $rsql)) {
@@ -56,15 +60,12 @@
                                                     
                         mysqli_stmt_bind_param($rstmt, "i", $_SESSION["uid"]);
                         mysqli_stmt_execute($rstmt);
-                        $rquery = mysqli_stmt_get_result($rstmt);
+                        $resources = json_decode(mysqli_fetch_assoc(mysqli_stmt_get_result($rstmt))['resources'], true);
                         mysqli_stmt_close($rstmt);
 
-                        $resources = array();
-                        while ($row = mysqli_fetch_assoc($rquery)) {
-                            array_push($resources, $row);
-                        }
-
-
+                        //
+                        // RETREIVE ALL REFERENCE RESOURCES FROM MYSQL
+                        //
 
                         $sql = "SELECT * FROM `resref`;";
                         $stmt = mysqli_stmt_init($ng);
@@ -82,9 +83,9 @@
 
                         while ($row = mysqli_fetch_assoc($query)) {
                             $resref+=1;
-                            echo("<a class='basicres'><img src='img/resources/".$row['name']."_icon.webp'>". $resources[0][$row['name']] ."  </a>");
+                            echo("<a class='basicres'><img src='img/resources/".$row['name']."_icon.webp'>  ". $resources[$row['name']] ."      </a>");
                         }
-                        echo ("
+                        echo("
                             <form action='resinc.php' method='get'>
                             <input type='submit' value='inc'>
                         </form>
