@@ -70,15 +70,20 @@
                             </div>
                         </div>
                         <div class='admanage-panel'>
-                            <h3>Resource List</h3><br>
-                            <div class='resourcelist'>
+                            <h3>BLANK</h3><br>
+                            <div class=''>
+                            </div>
+                        </div>
+                        <div class='admanage-panel'>
+                            <h3>Factory List</h3><br>
+                            <div class='factorylist'>
                                 <ul>");
-                                    $sql = "SELECT * FROM `resref`;";
+                                    $sql = "SELECT * FROM `facref`;";
 
                                     $stmt = mysqli_stmt_init($ng);
                                                                             
                                     if (!mysqli_stmt_prepare($stmt, $sql)) {
-                                        header("location: /NG/admanage.php?error=stmtfail");
+                                        header("location: /NG/admanage.php?error=facrefstmtfail");
                                         exit();
                                     }
                                                                             
@@ -95,18 +100,26 @@
                             </div>
                         </div>
                         <div class='admanage-panel'>
-                            <h3>Resource Creator</h3><br>
+                            <h3>Factory Creator</h3><br>
                             <div class=''>
-                                <form class='resource' action='includes/mkres.inc.php' method='POST' enctype='multipart/form-data'>
+                                <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+                                <script src='js/mkfac.js'></script>
+                                <div class='container1'>
+                                    <button class='add_form_field'>Add New Field &nbsp;<span style='font-size:16px; font-weight:bold;'>+</span></button>
+                                    <div>
+                                        <input type='text' name='mytext[]'>
+                                    </div>
+                                </div>
+                                <form class='resource' action='includes/mkfac.inc.php' method='POST' enctype='multipart/form-data'>
                                     <ul>
                                         <li>
-                                            <input type='text' name='name' placeholder='Resource Name'>
+                                            <input type='text' name='name' placeholder='Factory Name'>
                                         </li>
                                         <li>
                                             <input type='file' name='icon' accept='image/png, image/jpeg, image/webp'>
                                         </li>
                                         <li>
-                                            <button type='submit' name='submit' value='upload'>Create Resource</button>
+                                            <button type='submit' name='submit' value='upload'>Create Factory</button>
                                         </li>
                                     </ul>
                                 </form>

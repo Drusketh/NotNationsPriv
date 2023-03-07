@@ -69,14 +69,6 @@ CREATE TABLE resref (
     icon text not null
 );
 
-CREATE TABLE factories (
-    id int(5) not null PRIMARY KEY AUTO_INCREMENT,
-    uid int(5) not null,
-    name int(6) not null,
-    dairyprog int(2) not null,
-    dairylevel int(1) not null,
-);
-
 CREATE TABLE factest1 (
     id int(5) not null PRIMARY KEY AUTO_INCREMENT,
     a int(5) not null,

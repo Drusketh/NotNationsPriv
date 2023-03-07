@@ -9,7 +9,7 @@
     include("includes/dbh.inc.php");
     include("includes/functions.inc.php");
 
-    echo "
+    // echo "
         <div class='floatmenu' style='width:50%'>
             <div class='white'>
                 <h3> Hello, I am Nathan Pollaro </h5>
@@ -36,7 +36,7 @@
                 </ul>
             </div>
         </div>
-        ";
+        // ";
 ?>
 
 <?php
