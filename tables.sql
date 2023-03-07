@@ -72,7 +72,7 @@ CREATE TABLE resref (
 CREATE TABLE factories (
     id int(5) not null PRIMARY KEY AUTO_INCREMENT,
     uid int(5) not null,
-    dairy int(6) not null,
+    name int(6) not null,
     dairyprog int(2) not null,
     dairylevel int(1) not null,
 );

@@ -45,7 +45,6 @@
                                     
                                     mysqli_stmt_close($stmt);
 
-                                    $resref = array();
                                     while ($row = mysqli_fetch_assoc($query)) {
                                         echo("<li><img src='img/resources/".$row['name']."_icon.webp'>" . $row['name'] . "<li>");
                                     }

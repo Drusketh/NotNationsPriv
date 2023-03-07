@@ -45,16 +45,47 @@
                     </div>
                 </div> 
                 <div class='resholder' id='resholder'>
-                    <div class='basic show' id='basic'>
-                        <a class='basicres br-mn'>Money $money</a>
-                        <a class='basicres br-fo'>Food $food</a>
-                        <a class='basicres br-pw'>Power $power</a>
-                        <a class='basicres br-bm'>BM $bm</a>
-                        <a class='basicres br-cg'>CG $cg</a>
-                        <a class='basicres br-cg'>Metal $metal</a>
-                        <a class='basicres br-fu'>Fuel $fuel</a>
-                        <a class='basicres br-am'>Ammunition $ammo</a>
-                        <form action='resinc.php' method='get'>
+                    <div class='basic show' id='basic'>");
+                        $rsql = "SELECT * FROM `resources` where uid = ?;";
+                        $rstmt = mysqli_stmt_init($ng);
+                                                                
+                        if (!mysqli_stmt_prepare($rstmt, $rsql)) {
+                            header("location: /NG/admanage.php?error=stmtfail");
+                            exit();
+                        }
+                                                    
+                        mysqli_stmt_bind_param($rstmt, "i", $_SESSION["uid"]);
+                        mysqli_stmt_execute($rstmt);
+                        $rquery = mysqli_stmt_get_result($rstmt);
+                        mysqli_stmt_close($rstmt);
+
+                        $resources = array();
+                        while ($row = mysqli_fetch_assoc($rquery)) {
+                            array_push($resources, $row);
+                        }
+
+
+
+                        $sql = "SELECT * FROM `resref`;";
+                        $stmt = mysqli_stmt_init($ng);
+                                                                
+                        if (!mysqli_stmt_prepare($stmt, $sql)) {
+                            header("location: /NG/admanage.php?error=stmtfail");
+                            exit();
+                        }
+                                                                
+                        mysqli_stmt_execute($stmt);
+                        $query = mysqli_stmt_get_result($stmt);
+                        mysqli_stmt_close($stmt);
+
+                        $resref = 0;
+
+                        while ($row = mysqli_fetch_assoc($query)) {
+                            $resref+=1;
+                            echo("<a class='basicres'><img src='img/resources/".$row['name']."_icon.webp'>". $resources[0][$row['name']] ."  </a>");
+                        }
+                        echo ("
+                            <form action='resinc.php' method='get'>
                             <input type='submit' value='inc'>
                         </form>
                     </div>
