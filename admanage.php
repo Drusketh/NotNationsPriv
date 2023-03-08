@@ -110,15 +110,22 @@
                                             <input type='text' name='name' placeholder='Factory Name'>
                                         </li>
                                         <li>
-                                            <h3>Cost</h3>
+                                            <p>Cost</p>
                                         </li>
                                         <li>
-                                            <div class='container1'>
-                                                <button class='add_form_field'>Add New Field &nbsp; 
-                                                <span style='font-size:16px; font-weight:bold;'>+ </span>
-                                                </button>
-                                                <div><input type='text' name='mytext[]'></div>
+                                            <div class='wrapper'>
+                                                <div>
+                                                    <select name='resources'>
+                                                        <option value='volvo'>Volvo</option>
+                                                        <option value='saab'>Saab</option>
+                                                        <option value='mercedes'>Mercedes</option>
+                                                        <option value='audi'>Audi</option>
+                                                    </select>
+                                                    <input type='number' name='mytext[]'>
+                                                </div>
                                             </div>
+                                            <button class='add_form_field'>Add New Field &nbsp; <span style='font-size:16px; font-weight:bold;'>+ </span></button>
+
                                         <li>
                                             <input type='file' name='icon' accept='image/png, image/jpeg, image/webp'>
                                         </li>
