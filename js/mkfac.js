@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var max_fields = 10;
-    var wrapper = $(".container1");
+    var wrapper = $(".wrapper");
     var add_button = $(".add_form_field");
 
     var x = 1;

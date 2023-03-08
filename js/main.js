@@ -12,10 +12,10 @@ window.onclick = function(e) {
         if (myDropdown.classList.contains('show')) {
             myDropdown.classList.remove('show');
         }
-        var reslist = document.getElementById("reslist");
-        if (reslist.classList.contains('show')) {
-            reslist.classList.remove('show');
-        }
+        // var reslist = document.getElementById("reslist");
+        // if (reslist.classList.contains('show')) {
+        //     reslist.classList.remove('show');
+        // }
     }
     
     if (e.target.matches('.rsbasic')) {

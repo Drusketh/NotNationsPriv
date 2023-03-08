@@ -101,20 +101,24 @@
                         </div>
                         <div class='admanage-panel'>
                             <h3>Factory Creator</h3><br>
-                            <div class=''>
+                            <div class='factorylist'>
                                 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
                                 <script src='js/mkfac.js'></script>
-                                <div class='container1'>
-                                    <button class='add_form_field'>Add New Field &nbsp;<span style='font-size:16px; font-weight:bold;'>+</span></button>
-                                    <div>
-                                        <input type='text' name='mytext[]'>
-                                    </div>
-                                </div>
                                 <form class='resource' action='includes/mkfac.inc.php' method='POST' enctype='multipart/form-data'>
                                     <ul>
                                         <li>
                                             <input type='text' name='name' placeholder='Factory Name'>
                                         </li>
+                                        <li>
+                                            <h3>Cost</h3>
+                                        </li>
+                                        <li>
+                                            <div class='container1'>
+                                                <button class='add_form_field'>Add New Field &nbsp; 
+                                                <span style='font-size:16px; font-weight:bold;'>+ </span>
+                                                </button>
+                                                <div><input type='text' name='mytext[]'></div>
+                                            </div>
                                         <li>
                                             <input type='file' name='icon' accept='image/png, image/jpeg, image/webp'>
                                         </li>
