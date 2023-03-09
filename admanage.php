@@ -113,19 +113,17 @@
                                             <p>Cost</p>
                                         </li>
                                         <li>
-                                            <div class='wrapper'>
-                                                <div>
-                                                    <select name='resources'>
-                                                        <option value='volvo'>Volvo</option>
-                                                        <option value='saab'>Saab</option>
-                                                        <option value='mercedes'>Mercedes</option>
-                                                        <option value='audi'>Audi</option>
-                                                    </select>
-                                                    <input type='number' name='mytext[]'>
-                                                </div>
+                                        <div class='input_fields_wrap'>
+                                            <button class='btn btn-primary add_field_button' type='button'>Add New Field &nbsp; <span style='font-size:16px; font-weight:bold;'>+ </span></button>
+                                            <div class='aaaa'>
+                                                <select class='form-control' name='findings[]'>
+                                                    <option value='a'>aaaaaa</option>
+                                                    <option value='b'>bbbbbb</option>
+                                                    <option value='c'>ccccccc</option>
+                                                </select>
+                                                <button class='remove_field'>Remove</button>
                                             </div>
-                                            <button class='add_form_field'>Add New Field &nbsp; <span style='font-size:16px; font-weight:bold;'>+ </span></button>
-
+                                        </div>
                                         <li>
                                             <input type='file' name='icon' accept='image/png, image/jpeg, image/webp'>
                                         </li>
