@@ -26,7 +26,7 @@
             else {
                 echo("
                     <div class='admanage-container'>
-                        <div class='admanage-panel'>
+                        <div class='admanage-panel resource-list'>
                             <h3>Resource List</h3><br>
                             <div class='resourcelist'>
                                 <ul>");
@@ -45,19 +45,22 @@
                                     
                                     mysqli_stmt_close($stmt);
 
+                                    $resources[] = array();
                                     while ($row = mysqli_fetch_assoc($query)) {
+                                        array_push($resources, $row);
                                         echo("<li><img src='img/resources/".$row['name']."_icon.webp'>" . $row['name'] . "<li>");
                                     }
+                                    \array_splice($resources, 0, 1);
                             echo("</ul>
                             </div>
                         </div>
-                        <div class='admanage-panel'>
+                        <div class='admanage-panel resource-maker'>
                             <h3>Resource Creator</h3><br>
                             <div class=''>
                                 <form class='resource' action='includes/mkres.inc.php' method='POST' enctype='multipart/form-data'>
                                     <ul>
                                         <li>
-                                            <input type='text' name='name' placeholder='Resource Name'>
+                                            <input class='text' type='text' name='name' placeholder='Resource Name'>
                                         </li>
                                         <li>
                                             <input type='file' name='icon' accept='image/png, image/jpeg, image/webp'>
@@ -74,7 +77,7 @@
                             <div class=''>
                             </div>
                         </div>
-                        <div class='admanage-panel'>
+                        <div class='admanage-panel factory-list'>
                             <h3>Factory List</h3><br>
                             <div class='factorylist'>
                                 <ul>");
@@ -92,14 +95,16 @@
                                     $query = mysqli_stmt_get_result($stmt);
                                     
                                     mysqli_stmt_close($stmt);
-
+                                    
+                                    $factories[] = array();
                                     while ($row = mysqli_fetch_assoc($query)) {
-                                        echo("<li><img src='img/resources/".$row['name']."_icon.webp'>" . $row['name'] . "<li>");
+                                        array_push($factories, $row);
+                                        echo("<li><img src='img/factories/".$row['name']."_icon.webp'>" . $row['name'] . "<li>");
                                     }
                             echo("</ul>
                             </div>
                         </div>
-                        <div class='admanage-panel'>
+                        <div class='admanage-panel factory-maker'>
                             <h3>Factory Creator</h3><br>
                             <div class='factorylist'>
                                 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
@@ -107,23 +112,41 @@
                                 <form class='resource' action='includes/mkfac.inc.php' method='POST' enctype='multipart/form-data'>
                                     <ul>
                                         <li>
-                                            <input type='text' name='name' placeholder='Factory Name'>
+                                            <input class='text' type='text' name='name' placeholder='Factory Name'>
                                         </li>
+
+                                        <p>Cost</p>
+
                                         <li>
-                                            <p>Cost</p>
-                                        </li>
-                                        <li>
-                                        <div class='input_fields_wrap'>
-                                            <button class='btn btn-primary add_field_button' type='button'>Add New Field &nbsp; <span style='font-size:16px; font-weight:bold;'>+ </span></button>
-                                            <div class='aaaa'>
+                                            <div class='input_fields_wrap'>
                                                 <select class='form-control' name='findings[]'>
-                                                    <option value='a'>aaaaaa</option>
-                                                    <option value='b'>bbbbbb</option>
-                                                    <option value='c'>ccccccc</option>
-                                                </select>
+                                                    ");
+                                                    foreach($resources as &$v) {
+                                                        echo("<option value='a'>" . $v['name'] . "</option>");
+                                                    }
+                                                    echo("
+                                                </select><input class='form-number' type='number' name='count' placeholder='count'>
                                                 <button class='remove_field'>Remove</button>
                                             </div>
-                                        </div>
+                                            <button class='form-button add_field_button' type='button'>Add New Field &nbsp; <span style='font-size:16px; font-weight:bold;'>+ </span></button>
+                                        </li>
+
+                                        <p>Produces</p>
+                                        
+                                        <li>
+                                            <div class='input_fields_wrap'>
+                                                <select class='form-control' name='production'>
+                                                    ");
+                                                    foreach($resources as &$v) {
+                                                        echo("<option value='a'>" . $v['name'] . "</option>");
+                                                    }
+                                                    echo("
+                                                </select><input class='form-number' type='number' name='count' placeholder='count'>
+                                                <button class='remove_field'>Remove</button>
+                                            </div>
+                                            <button class='form-button add_field_button' type='button'>Add New Field &nbsp; <span style='font-size:16px; font-weight:bold;'>+ </span></button>
+                                        </li>
+
                                         <li>
                                             <input type='file' name='icon' accept='image/png, image/jpeg, image/webp'>
                                         </li>
