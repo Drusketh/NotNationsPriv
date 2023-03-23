@@ -9,7 +9,8 @@ $(document).ready(function() {
       if (x < max_fields) {
         x++;
         $(".aaaa").first().clone().appendTo(".input_fields_wrap");
-        }
+        console.log("test");
+      }
     });
     $(wrapper).on("click", ".remove_field", function(e) {
       e.preventDefault();

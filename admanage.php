@@ -26,6 +26,7 @@
             else {
                 echo("
                     <div class='admanage-container'>
+                        <script src='js/mkfac.js'></script>
                         <div class='admanage-panel resource-list'>
                             <h3>Resource List</h3><br>
                             <div class='resourcelist'>
@@ -107,8 +108,6 @@
                         <div class='admanage-panel factory-maker'>
                             <h3>Factory Creator</h3><br>
                             <div class='factorylist'>
-                                <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
-                                <script src='js/mkfac.js'></script>
                                 <form class='resource' action='includes/mkfac.inc.php' method='POST' enctype='multipart/form-data'>
                                     <ul>
                                         <li>
