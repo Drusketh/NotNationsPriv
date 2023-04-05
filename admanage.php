@@ -116,19 +116,24 @@
 
                                         <p>Cost</p>
 
+                                       
                                         <li>
                                             <div class='input_fields_wrap'>
-                                                <select class='form-control' name='findings[]'>
-                                                    ");
-                                                    foreach($resources as &$v) {
-                                                        echo("<option value='a'>" . $v['name'] . "</option>");
-                                                    }
-                                                    echo("
-                                                </select><input class='form-number' type='number' name='count' placeholder='count'>
-                                                <button class='remove_field'>Remove</button>
+                                                <div>
+                                                    <select class='form-control' name='findings[]'>
+                                                        ");
+                                                        foreach($resources as &$v) {
+                                                            echo("<option value='a'>" . $v['name'] . "</option>");
+                                                        }
+                                                        echo("
+                                                    </select>
+                                                    <input class='form-number' type='number' name='count' placeholder='count'>
+                                                    <button class='remove_field'>Remove</button>
+                                                </div>
                                             </div>
-                                            <button class='form-button add_field_button' type='button'>Add New Field &nbsp; <span style='font-size:16px; font-weight:bold;'>+ </span></button>
                                         </li>
+                                        
+                                        <button class='form-button add_field_button' type='button'>Add New Field &nbsp; <span style='font-size:16px; font-weight:bold;'>+ </span></button>
 
                                         <p>Produces</p>
                                         

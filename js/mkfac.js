@@ -3,13 +3,14 @@ $(document).ready(function() {
     var wrapper = $(".input_fields_wrap");
     var add_button = $(".add_field_button");
     
+    console.log(wrapper);
+
     var x = 1;
     $(add_button).click(function(e) {
       e.preventDefault();
       if (x < max_fields) {
         x++;
-        $(".aaaa").first().clone().appendTo(".input_fields_wrap");
-        console.log("test");
+        $(".input_fields_wrap").children().first().clone().appendTo(".input_fields_wrap");
       }
     });
     $(wrapper).on("click", ".remove_field", function(e) {
