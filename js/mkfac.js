@@ -8,8 +8,12 @@ $(document).ready(function() {
         e.preventDefault();
         if (ct < max) {
             ct++
-            $(this).parent().children().first().clone().insertBefore($(this));
-            console.log(ct)
+            var test = $(this).parent().children().first().clone().insertBefore($(this));
+            var resource = $(test).children()[0];
+            var count = $(test).children()[1];
+
+            $(resource).attr('name', $(resource).attr('name') + ct);
+            $(count).attr('name', $(count).attr('name') + ct);
         }
     });
     $(document).on('click', '.remove_field', function() {

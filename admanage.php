@@ -117,16 +117,16 @@
                                         <p>Cost</p>
 
                                        
-                                        <li class='input'>
+                                        <li>
                                             <div class='input_fields_wrap'>
-                                                <select class='form-control' name='findings[]'>
+                                                <select class='form-control' name='cost'>
                                                     ");
                                                     foreach($resources as &$v) {
-                                                        echo("<option value='a'>" . $v['name'] . "</option>");
+                                                        echo("<option value='" . $v['name'] . "'>" . $v['name'] . "</option>");
                                                     }
                                                     echo("
                                                 </select>
-                                                <input class='form-number' type='number' name='count' placeholder='count'>
+                                                <input class='form-number' type='number' name='ccount' placeholder='count'>
                                                 <button type='button' class='remove_field'>Remove</button>
                                             </div>
 
@@ -136,15 +136,15 @@
                                         
                                         <p>Produces</p>
                                         
-                                        <li class='output'>
+                                        <li>
                                             <div class='input_fields_wrap'>
-                                                <select class='form-control' name='production'>
+                                                <select class='form-control' name='produce'>
                                                     ");
                                                     foreach($resources as &$v) {
-                                                        echo("<option value='a'>" . $v['name'] . "</option>");
+                                                        echo("<option value='" . $v['name'] . "'>" . $v['name'] . "</option>");
                                                     }
                                                     echo("
-                                                </select><input class='form-number' type='number' name='count' placeholder='count'>
+                                                </select><input class='form-number' type='number' name='pcount' placeholder='count'>
                                                 <button type='button' class='remove_field'>Remove</button>
                                             </div>
 
