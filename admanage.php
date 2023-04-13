@@ -100,7 +100,7 @@
                                     $factories[] = array();
                                     while ($row = mysqli_fetch_assoc($query)) {
                                         array_push($factories, $row);
-                                        echo("<li><img src='img/factories/".$row['name']."_icon.webp'>" . $row['name'] . "<li>");
+                                        echo("<li><img src='img/factories/".$row['icon']."'>" . $row['name'] . "<li>");
                                     }
                             echo("</ul>
                             </div>
@@ -114,9 +114,12 @@
                                             <input class='text' type='text' name='name' placeholder='Factory Name'>
                                         </li>
 
+                                        <li>
+                                            <input class='text' type='number' name='level' placeholder='maxfaclevel'>
+                                        </li>
+
                                         <p>Cost</p>
 
-                                       
                                         <li>
                                             <div class='input_fields_wrap'>
                                                 <select class='form-control' name='cost'>
@@ -130,7 +133,7 @@
                                                 <button type='button' class='remove_field'>Remove</button>
                                             </div>
 
-                                            <button class='add_field_button' type='button'>Add New Field &nbsp; <span style='font-size:16px; font-weight:bold;'>+ </span></button>
+                                            <button class='add_field_button 1' type='button'>Add New Field &nbsp; <span style='font-size:16px; font-weight:bold;'>+ </span></button>
                                         </li>
                                         
                                         
@@ -148,7 +151,7 @@
                                                 <button type='button' class='remove_field'>Remove</button>
                                             </div>
 
-                                            <button class='add_field_button' type='button'>Add New Field &nbsp; <span style='font-size:16px; font-weight:bold;'>+ </span></button>
+                                            <button class='add_field_button 2' type='button'>Add New Field &nbsp; <span style='font-size:16px; font-weight:bold;'>+ </span></button>
                                         </li>
 
                                         <li>

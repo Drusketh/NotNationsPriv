@@ -1,4 +1,7 @@
 <?php
+    require_once "dbh.inc.php";
+    require_once "functions.inc.php";
+
     session_start();
 
     if (isset($_POST["submit"])) {
@@ -8,10 +11,33 @@
             header("location: ../admanage.php");
         }
 
-        echo(json_encode($_POST['name']));
+        $name = $_POST["name"];
+        $level = $_POST["level"];
+        $icon = $_FILES['icon'];
+        $cost = $_POST["cost"] . ":" . $_POST["ccount"] . ",";
+        $produce = $_POST["produce"] . ":" . $_POST["pcount"] . ",";
 
-        require_once "dbh.inc.php";
-        require_once "functions.inc.php";
+        for ($i = 1; $i <= 10; $i++) {
+            if(empty($_POST["cost" . strval($i)])) {}
+            else {
+                $cost = $cost . $_POST["cost" . strval($i)] . ":" . $_POST["ccount" . strval($i)] . ",";
+            }
+        }
+        for ($i = 1; $i <= 10; $i++) {
+            if(empty($_POST["produce" . strval($i)])) {}
+            else {
+                $produce = $produce . $_POST["produce" . strval($i)] . ":" . $_POST["pcount" . strval($i)] . ",";
+            }
+        }
+
+        echo($cost . "<br>" . $produce . "<br>");
+
+        // This part of the page needs to add a prompt for the admin to view the factory in its completed stage and verify if it is correct, then prompt for creation.
+
+        makeFactory($ng, $name, $cost, $produce, $level, $icon);
+
+        header("location: /NG/admanage.php?error=facsuccess", true);
+        exit();
     }
     else {
         header("location: ../signup.php");

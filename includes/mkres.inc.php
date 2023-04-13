@@ -17,7 +17,7 @@
         
         makeResource($ng, $name, $icon);
 
-        header("location: /NG/admanage.php?error=success", true);
+        header("location: /NG/admanage.php?error=ressuccess", true);
         exit();
     }
     else {

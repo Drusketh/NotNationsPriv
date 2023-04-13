@@ -6,11 +6,14 @@ $(document).ready(function() {
 
     $(add_button).click(function(e) {
         e.preventDefault();
-        if (ct < max) {
-            ct++
+        if ($(this).parent().children().length < max+1) {
+            ct = $(this).parent().children().length - 1
+            var button = this;
             var test = $(this).parent().children().first().clone().insertBefore($(this));
             var resource = $(test).children()[0];
             var count = $(test).children()[1];
+
+            console.log($(this).parent().children().length);
 
             $(resource).attr('name', $(resource).attr('name') + ct);
             $(count).attr('name', $(count).attr('name') + ct);

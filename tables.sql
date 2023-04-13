@@ -60,7 +60,9 @@ CREATE TABLE facref (
     id int(3) not null PRIMARY KEY AUTO_INCREMENT,
     name varchar(32) not null,
     cost text not null,
-    level int(1) not null
+    produce text not null, 
+    maxlvl int(2) not null,
+    icon text not null
 );
 
 CREATE TABLE resref (

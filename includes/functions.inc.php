@@ -313,6 +313,8 @@ function createNation($ng, $uid, $name, $capitol, $biome, $govt, $econ, $curtime
     exit();
 }
 
+//ADMANAGE PAGE  FUNCTIONS
+
 function makeResource($ng, $name, $icon) {
     $sql = "INSERT INTO resref (name, icon) VALUES (?, ?);";
     $stmt = mysqli_stmt_init($ng);
@@ -335,6 +337,32 @@ function makeResource($ng, $name, $icon) {
     }
 
     mysqli_stmt_bind_param($stmt, "ss", $name, $filename);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+}
+
+function makeFactory($ng, $name, $cost, $produce, $level, $icon) {
+    $sql = "INSERT INTO facref (name, cost, produce, maxlvl, icon) VALUES (?, ?, ?, ?, ?);";
+    $stmt = mysqli_stmt_init($ng);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
+        header("location: /NG/index.php?error=stmtfail");
+        exit();
+    }
+
+    $filename = $_FILES['icon']['name'];
+    $filetmpname = $_FILES['icon']['tmp_name'];
+        
+    $folder = '../img/resources/';
+    if (file_exists($folder.$filename) !==false) {
+        //header("location: /NG/admanage.php?error=fileexists");
+        //exit();
+    }
+    else {
+        move_uploaded_file($filetmpname, $folder.$filename);
+    }
+
+    mysqli_stmt_bind_param($stmt, "sssis", $name, $cost, $produce, $level, $filename);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 }
