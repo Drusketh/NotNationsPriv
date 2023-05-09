@@ -13,36 +13,36 @@
 <div class='gamecontent'>
     <div class='flexcontainer'>
         <?php
-            $sql = "SELECT * FROM resref;";
-            $stmt = mysqli_stmt_init($ng);
-
-            if (!mysqli_stmt_prepare($stmt, $sql)) {
-                header("location: ../index.php?error=holyshitwtf");
-                exit();
-            };
-
+            $stmt = mysqli_prepare($ng, "SELECT * FROM facref");
+            
             mysqli_stmt_execute($stmt);
-            $resultarr = mysqli_fetch_array(mysqli_stmt_get_result($stmt), MYSQLI_ASSOC);
+            $resultarr = mysqli_stmt_get_result($stmt);
             mysqli_stmt_close($stmt);
 
-            echo(json_encode($resultarr));
-
-            // for ($x = 2; $x < sizeof($resultarr); $x+=3) {
-            //     $count = $resultarr[$x];
-            //     $progression = $resultarr[$x+1];
-            //     $level = $resultarr[$x+2];
-
-            //     echo("
-            //         <div class='flexchild'>
-            //             <div class=faccount>$count</div>
-            //             <h3>ex factory</h3><br>
-            //             <p>facnum: $count</p>
-            //             <p>amount: $progression/24</p>
-            //             <p>level: $level</p>
-            //             <button>collect</button>
-            //         </div>
-            //     ");
-            // } 
+            while ($row = mysqli_fetch_array($resultarr, MYSQLI_NUM)) {
+                $id = $row[0];
+                $name = $row[1];
+                $cost = $row[2];
+                $produce = $row[3];
+                $level = $row[4];
+                $icon = $row[5];
+                echo($id);
+                echo($name);
+                echo($cost);
+                echo($produce);
+                echo($level);
+                echo($icon);
+                echo("
+                    <div class='flexchild'>
+                        <div class=faccount>".$count."</div>
+                        <h3>ex factory</h3><br>
+                        <p>facnum:". $count."</p>
+                        <p>amount:". $progression."/24</p>
+                        <p>level:". $level."</p>
+                        <button>collect</button>
+                    </div>
+                ");
+        `   }
         ?>
     </div>
 </div>
