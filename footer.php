@@ -50,7 +50,7 @@
                         // RETREIVE RESOURCES, SAVE TO $resources
                         //
 
-                        $rsql = "SELECT `resources` FROM `nation` where uid = ?;";
+                        $rsql = "SELECT * FROM `resources` where uid = ?;";
                         $rstmt = mysqli_stmt_init($ng);
                                                                 
                         if (!mysqli_stmt_prepare($rstmt, $rsql)) {
