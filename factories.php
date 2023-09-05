@@ -42,7 +42,7 @@
                         <button>collect</button>
                     </div>
                 ");
-        `   }
+            }
         ?>
     </div>
 </div>

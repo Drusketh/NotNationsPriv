@@ -32,19 +32,6 @@ CREATE TABLE `nation` (
     tier int(10) not null
 );
 
-CREATE TABLE `resources` (
-  `id` int(5) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `uid` int(5) NOT NULL,
-  `money` int(9) NOT NULL DEFAULT 0,
-  `food` int(9) NOT NULL DEFAULT 0,
-  `power` int(9) NOT NULL DEFAULT 0,
-  `bm` int(9) NOT NULL DEFAULT 0,
-  `cg` int(9) NOT NULL DEFAULT 0,
-  `metal` int(9) NOT NULL DEFAULT 0,
-  `fuel` int(6) NOT NULL DEFAULT 0,
-  `ammunition` int(6) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 CREATE TABLE construct (
     name varchar(32) not null,
     email varchar(254) not null,
