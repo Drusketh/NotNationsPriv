@@ -2,39 +2,6 @@
         if (isset($_SESSION["uid"])) {
             if (verifyUser($ng, $_SESSION["uid"], 0, 0) == true) {
                 if ($_SESSION["hasnation"] == 1) {
-                    $sql = "SELECT * FROM resources WHERE uid = ?;";
-                    $stmt = mysqli_stmt_init($ng);
-
-                    if (!mysqli_stmt_prepare($stmt, $sql)) {
-                        header("location: ../index.php?error=adm1");
-                        exit();
-                    };
-
-                    mysqli_stmt_bind_param($stmt, "i", $_SESSION["uid"]);
-                    mysqli_stmt_execute($stmt);
-                    $resources = mysqli_fetch_array(mysqli_stmt_get_result($stmt), MYSQLI_NUM);
-                    mysqli_stmt_close($stmt);
-                    
-                    $_SESSION["money"] = $resources[2];
-                    $_SESSION["food"]  = $resources[3];
-                    $_SESSION["power"] = $resources[4];
-                    $_SESSION["bm"]    = $resources[5];
-                    $_SESSION["cg"]    = $resources[6];
-                    $_SESSION["metal"] = $resources[7];
-                    $_SESSION["fuel"]  = $resources[8];
-                    $_SESSION["ammo"]  = $resources[9];
-
-                    $money = $_SESSION["money"];
-                    $food  = $_SESSION["food"];
-                    $power = $_SESSION["power"];
-                    $bm    = $_SESSION["bm"];
-                    $cg    = $_SESSION["cg"];
-                    $metal = $_SESSION["metal"];
-                    $fuel  = $_SESSION["fuel"];
-                    $ammo  = $_SESSION["ammo"];
-
-                    $stat="test";
-
                     echo("
             <div class='footer'>
                 <div class='dropdown' id='resswitch' style='left: 0.5rem; right: auto; position: auto;'>
@@ -61,6 +28,7 @@
                         mysqli_stmt_bind_param($rstmt, "i", $_SESSION["uid"]);
                         mysqli_stmt_execute($rstmt);
                         $resources = json_decode(mysqli_fetch_assoc(mysqli_stmt_get_result($rstmt))['resources'], true);
+                        $_SESSION["resources"] = $resources;
                         mysqli_stmt_close($rstmt);
 
                         //
@@ -83,10 +51,10 @@
 
                         while ($row = mysqli_fetch_assoc($query)) {
                             $resref+=1;
-                            echo("<a class='basicres'><img src='img/resources/".$row['name']."_icon.webp'>  ". $resources[$row['name']] ."      </a>");
+                            echo("<a class='basicres'><img src='img/resources/".$row['name']."_icon.webp'>  ". $_SESSION["resources"][$row['name']] ."      </a>");
                         }
                         echo("
-                            <form action='resinc.php' method='get'>
+                        <form action='resinc.php' method='get'>
                             <input type='submit' value='inc'>
                         </form>
                     </div>
