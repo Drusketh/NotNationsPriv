@@ -54,7 +54,7 @@
                             echo("<a class='basicres'><img src='img/resources/".$row['name']."_icon.webp'>  ". $_SESSION["resources"][$row['name']] ."      </a>");
                         }
                         echo("
-                        <form action='resinc.php' method='get'>
+                        <form action='includes/update.inc.php' method='get'>
                             <input type='submit' value='inc'>
                         </form>
                     </div>

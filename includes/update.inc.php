@@ -5,11 +5,13 @@
     if (isset($_SESSION["uid"])) {
         if (verifyUser($ng, $_SESSION["uid"], 0, 0) == true) {
             if ($_SESSION["hasnation"] == 1) {
-                echo($_SESSION["resources"][1]);
-                $uid   = $_SESSION["uid"];
-                $money = $_SESSION["population"] + 1000;
+                $resources = $_SESSION["resources"];
+                print_r($resources);
+                $uid = $_SESSION["uid"];
+                $pop = intval($_SESSION["population"]) + 1000;
+                $_SESSION["population"] = $pop;
 
-                $sql = "UPDATE nation SET money = ?, food = ?, power = ?, bm = ?, cg = ?, metal = ?, fuel = ?, ammunition = ? WHERE uid = ?;";
+                $sql = "UPDATE nation SET population = ? WHERE uid = ?;";
                 $stmt = mysqli_stmt_init($ng);
 
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -17,11 +19,13 @@
                     exit();
                 };
 
-                mysqli_stmt_bind_param($stmt, "iiiiiiiii", $money, $food, $power, $bm, $cg, $metal, $fuel, $ammo, $uid);
+                mysqli_stmt_bind_param($stmt, "ii", $pop, $uid);
                 mysqli_stmt_execute($stmt);
                 mysqli_stmt_close($stmt);
+                
+                echo($_SERVER["HTTP_REFERER"]);
 
-                header("location: factories.php");
+                header("location: " . $_SERVER["HTTP_REFERER"]);
                 exit();
             }
         }
