@@ -3,16 +3,16 @@
             if (verifyUser($ng, $_SESSION["uid"], 0, 0) == true) {
                 if ($_SESSION["hasnation"] == 1) {
                     echo("
-            <div class='footer'>
-                <div class='dropdown' id='resswitch' style='left: 0.5rem; right: auto; position: auto;'>
-                    <button class='dropbtn' id='resbtn' onClick='drop(this.id);'>v</button>
-                    <div class='dropdown-content' id='reslist' style='left: 0.5rem; right: auto; bottom: 100%;'>
-                        <a class='rsbasic'>Basic</a> <!--resswitch = rs -->
-                        <a class='rsflora'>Flora</a>
-                    </div>
-                </div> 
-                <div class='resholder' id='resholder'>
-                    <div class='basic show' id='basic'>");
+                        <div class='footer'>
+                            <div class='dropdown' id='resswitch' style='left: 0.5rem; right: auto; position: auto;'>
+                                <button class='dropbtn' id='resbtn' onClick='drop(this.id);'>v</button>
+                                <div class='dropdown-content' id='reslist' style='left: 0.5rem; right: auto; bottom: 100%;'>
+                                    <a class='rsbasic'>Basic</a> <!--resswitch = rs -->
+                                    <a class='rsflora'>Flora</a>
+                                </div>
+                            </div> 
+                            <div class='resholder' id='resholder'>
+                                <div class='basic show' id='basic'>");
                         //
                         // RETREIVE RESOURCES, SAVE TO $resources
                         //
@@ -27,8 +27,9 @@
                                                     
                         mysqli_stmt_bind_param($rstmt, "i", $_SESSION["uid"]);
                         mysqli_stmt_execute($rstmt);
-                        $resources = json_decode(mysqli_fetch_assoc(mysqli_stmt_get_result($rstmt))['resources'], true);
+                        $resources = json_encode(mysqli_fetch_assoc(mysqli_stmt_get_result($rstmt))['resources']);
                         $_SESSION["resources"] = $resources;
+                        print_r($_SESSION["resources"]);
                         mysqli_stmt_close($rstmt);
 
                         //

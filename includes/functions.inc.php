@@ -311,11 +311,7 @@ function makeResource($ng, $name, $icon) {
     $filetmpname = $_FILES['icon']['tmp_name'];
         
     $folder = '../img/resources/';
-    if (file_exists($folder.$filename) !==false) {
-        header("location: /NG/admanage.php?error=fileexists");
-        exit();
-    }
-    else {
+    if (file_exists($folder.$filename) == false) {
         move_uploaded_file($filetmpname, $folder.$filename);
     }
 
