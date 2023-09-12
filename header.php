@@ -16,7 +16,10 @@
         <link rel="stylesheet" href="css/sidebar.css">
         <link rel="stylesheet" href="css/dropdown.css">
         <link rel="stylesheet" href="css/footer.css">
-        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Old+Permic&display=swap" rel="stylesheet">
+                
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <!-- <script src="js/p5.js"></script> -->
         <script src="js/sidebar.js"></script>
@@ -27,6 +30,7 @@
             <h1>Nations</h1>
             <a href="nation.php">Home</a>
             <a href="factories.php">Factories</a>
+            <a href="construct.php">Construct</a>
         </div>
 
         <div id="page-container" class="page-container">
