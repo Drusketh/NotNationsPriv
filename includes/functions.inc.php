@@ -260,7 +260,7 @@ function nationExists($ng, $name) {
 function createNation($ng, $uid, $name, $capitol, $biome, $govt, $econ, $curtime) {
     $basepop = 50000;
     $basetier = 1;
-    $baseres = "";
+    $baseres = '{"money": 10000, "food": 1000, "power": 1000, "bm": 100, "cg": 65, "metal": 0, "ammunition": 0, "fuel": 0, "uranium": 0}';
 
     $nsql = "INSERT INTO nation (uid, name, capitol, biome, government, econ, crtime, population, tier, resources) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($ng);
@@ -270,7 +270,7 @@ function createNation($ng, $uid, $name, $capitol, $biome, $govt, $econ, $curtime
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "isssiiiii", $uid, $name, $capitol, $biome, $govt, $econ, $curtime, $basepop, $basetier);
+    mysqli_stmt_bind_param($stmt, "isssiiiii", $uid, $name, $capitol, $biome, $govt, $econ, $curtime, $basepop, $basetier, $baseres);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
@@ -332,12 +332,8 @@ function makeFactory($ng, $name, $cost, $produce, $level, $icon) {
     $filename = $_FILES['icon']['name'];
     $filetmpname = $_FILES['icon']['tmp_name'];
         
-    $folder = '../img/resources/';
-    if (file_exists($folder.$filename) !==false) {
-        //header("location: /NG/admanage.php?error=fileexists");
-        //exit();
-    }
-    else {
+    $folder = '../img/factories/';
+    if (file_exists($folder.$filename) == false) {
         move_uploaded_file($filetmpname, $folder.$filename);
     }
 

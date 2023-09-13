@@ -7,12 +7,19 @@ body {
     background-color: #f5f5f5;
 }
 
+@font-face {
+    font-family: 'MyFont';
+    src: url('includes\Bell Centennial Name & Number.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+ }
+
 html, body {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'Noto Sans Old Permic', sans-serif;
+    font-family: 'Bell Centennial Name & Number', sans-serif;
 }
 
 .pagecontainer {

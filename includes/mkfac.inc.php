@@ -30,7 +30,10 @@
             }
         }
 
-        echo($cost . "<br>" . $produce . "<br>");
+        $cost = str_replace(array('"', '[', ']', ':', ','), array('', '{"', '}', '":', ',"'), json_encode(array_filter(explode(",", $cost))));
+        $produce = str_replace(array('"', '[', ']', ':', ','), array('', '{"', '}', '":', ',"'), json_encode(array_filter(explode(",", $produce))));
+
+        print_r($cost . "<br>" . $produce . "<br>");
 
         // This part of the page needs to add a prompt for the admin to view the factory in its completed stage and verify if it is correct, then prompt for creation.
 
