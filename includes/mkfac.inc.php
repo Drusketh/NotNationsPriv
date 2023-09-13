@@ -5,17 +5,19 @@
     session_start();
 
     if (isset($_POST["submit"])) {
-        $formdata = explode(",", str_replace('"', '', json_encode($_POST)));
+        // $_POST = json_encode($_POST);
         
-        if (empty($_POST["name"]) || empty($_POST["ccount"]) || empty($_POST["pcount"])) {
-            header("location: ../admanage.php");
+        if (empty($_POST["name"]) || empty($_POST["ccount"]) || empty($_POST["icount"]) || empty($_POST["ocount"])) {
+            //header("location: ../admanage.php");
+            echo("e");
         }
 
         $name = $_POST["name"];
         $level = $_POST["level"];
         $icon = $_FILES['icon'];
         $cost = $_POST["cost"] . ":" . $_POST["ccount"] . ",";
-        $produce = $_POST["produce"] . ":" . $_POST["pcount"] . ",";
+        $input = $_POST["input"] . ":" . $_POST["icount"] . ",";
+        $output = $_POST["output"] . ":" . $_POST["ocount"] . ",";
 
         for ($i = 1; $i <= 10; $i++) {
             if(empty($_POST["cost" . strval($i)])) {}
@@ -24,25 +26,31 @@
             }
         }
         for ($i = 1; $i <= 10; $i++) {
-            if(empty($_POST["produce" . strval($i)])) {}
+            if(empty($_POST["input" . strval($i)])) {}
             else {
-                $produce = $produce . $_POST["produce" . strval($i)] . ":" . $_POST["pcount" . strval($i)] . ",";
+                $input = $input . $_POST["input" . strval($i)] . ":" . $_POST["icount" . strval($i)] . ",";
+            }
+        }
+        for ($i = 1; $i <= 10; $i++) {
+            if(empty($_POST["output" . strval($i)])) {}
+            else {
+                $output = $output . $_POST["output" . strval($i)] . ":" . $_POST["ocount" . strval($i)] . ",";
             }
         }
 
         $cost = str_replace(array('"', '[', ']', ':', ','), array('', '{"', '}', '":', ',"'), json_encode(array_filter(explode(",", $cost))));
-        $produce = str_replace(array('"', '[', ']', ':', ','), array('', '{"', '}', '":', ',"'), json_encode(array_filter(explode(",", $produce))));
-
-        print_r($cost . "<br>" . $produce . "<br>");
+        $input = str_replace(array('"', '[', ']', ':', ','), array('', '{"', '}', '":', ',"'), json_encode(array_filter(explode(",", $input))));
+        $output = str_replace(array('"', '[', ']', ':', ','), array('', '{"', '}', '":', ',"'), json_encode(array_filter(explode(",", $output))));
 
         // This part of the page needs to add a prompt for the admin to view the factory in its completed stage and verify if it is correct, then prompt for creation.
 
-        makeFactory($ng, $name, $cost, $produce, $level, $icon);
+        makeFactory($ng, $name, $cost, $input, $output, $level, $icon);
 
         header("location: /NG/admanage.php?error=facsuccess", true);
         exit();
     }
     else {
-        header("location: ../signup.php");
+        //header("location: ../signup.php");
+        echo("subfail");
         exit();
     }

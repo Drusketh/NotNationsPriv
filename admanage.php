@@ -118,7 +118,7 @@
                                             <input class='text' type='number' name='level' placeholder='maxfaclevel'>
                                         </li>
 
-                                        <p>Cost</p>
+                                        <p>cost</p>
 
                                         <li>
                                             <div class='input_fields_wrap'>
@@ -137,21 +137,41 @@
                                         </li>
                                         
                                         
-                                        <p>Produces</p>
+
+                                        <p>input</p>
                                         
                                         <li>
                                             <div class='input_fields_wrap'>
-                                                <select class='form-control' name='produce'>
+                                                <select class='form-control' name='input'>
                                                     ");
                                                     foreach($resources as &$v) {
                                                         echo("<option value='" . $v['name'] . "'>" . $v['name'] . "</option>");
                                                     }
                                                     echo("
-                                                </select><input class='form-number' type='number' name='pcount' placeholder='count'>
+                                                </select><input class='form-number' type='number' name='icount' placeholder='count'>
                                                 <button type='button' class='remove_field'>Remove</button>
                                             </div>
 
                                             <button class='add_field_button 2' type='button'>Add New Field &nbsp; <span style='font-size:16px; font-weight:bold;'>+ </span></button>
+                                        </li>
+
+
+
+                                        <p>output</p>
+                                        
+                                        <li>
+                                            <div class='input_fields_wrap'>
+                                                <select class='form-control' name='output'>
+                                                    ");
+                                                    foreach($resources as &$v) {
+                                                        echo("<option value='" . $v['name'] . "'>" . $v['name'] . "</option>");
+                                                    }
+                                                    echo("
+                                                </select><input class='form-number' type='number' name='ocount' placeholder='count'>
+                                                <button type='button' class='remove_field'>Remove</button>
+                                            </div>
+
+                                            <button class='add_field_button 3' type='button'>Add New Field &nbsp; <span style='font-size:16px; font-weight:bold;'>+ </span></button>
                                         </li>
 
                                         <li>

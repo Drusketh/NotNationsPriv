@@ -29,7 +29,8 @@
             while ($row = mysqli_fetch_assoc($resultarr)) {
                 $name = $row["name"];
                 $cost = $row["cost"];
-                $return = $row["produce"];
+                $input = $row["input"];
+                $output = $row["output"];
                 $maxlevel = $row["maxlvl"];
                 $icon = $row["icon"];
                 // $tier = $row[6];
@@ -38,8 +39,15 @@
                     <div class='flexchild'>
                         <div class=faccount>$maxlevel</div>
                         <h3><img src='img/resources/$icon'>      $name</h3><br>
-                        <p>cost: $cost</p>
-                        <p>produce: $return</p>
+                        <p>cost: <br>");
+                        
+                        echo(json_encode($_SESSION["resref"]));
+                        // foreach ($row = $cost) {
+                        //     echo("<img src='img/resources/".$row['name']."_icon.webp'>  ". $cost[$row['name']] . "</p>");
+                        // }
+
+                        echo("<p>input: <br> $input</p>
+                        <p>produce: <br> $output</p>
                         <button>Purchase</button>
                     </div>
                 ");

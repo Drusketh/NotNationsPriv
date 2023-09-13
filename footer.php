@@ -47,10 +47,12 @@
                         $query = mysqli_stmt_get_result($stmt);
                         mysqli_stmt_close($stmt);
 
-                        $resref = 0;
+                        $_SESSION["imgref"] = array();
 
                         while ($row = mysqli_fetch_assoc($query)) {
-                            $resref+=1;
+                            $path = "img/resources/".$row['name']."_icon.webp";
+                            array_push($_SESSION["imgref"], $_SESSION["resources"][$row['name']]);
+                            $_SESSION["imgref"][$row['name']] = $path;
                             echo("<a class='basicres'><img src='img/resources/".$row['name']."_icon.webp'>  ". $_SESSION["resources"][$row['name']] ."      </a>");
                         }
                         echo("
