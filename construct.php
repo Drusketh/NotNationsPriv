@@ -28,9 +28,9 @@
 
             while ($row = mysqli_fetch_assoc($resultarr)) {
                 $name = $row["name"];
-                $cost = $row["cost"];
-                $input = $row["input"];
-                $output = $row["output"];
+                $cost[] = makeAssoc($row["cost"]);
+                $input[] = makeAssoc($row["input"]);
+                $output[] = makeAssoc($row["output"]);
                 $maxlevel = $row["maxlvl"];
                 $icon = $row["icon"];
                 // $tier = $row[6];
@@ -40,11 +40,10 @@
                         <div class=faccount>$maxlevel</div>
                         <h3><img src='img/resources/$icon'>      $name</h3><br>
                         <p>cost: <br>");
-                        
-                        echo(json_encode($_SESSION["resref"]));
-                        // foreach ($row = $cost) {
-                        //     echo("<img src='img/resources/".$row['name']."_icon.webp'>  ". $cost[$row['name']] . "</p>");
-                        // }
+
+                        foreach ($input as $row) {
+                            echo("<img src='img/resources/".$row['name']."_icon.webp'>  ". $input[$row['name']] . "</p>");
+                        }
 
                         echo("<p>input: <br> $input</p>
                         <p>produce: <br> $output</p>
