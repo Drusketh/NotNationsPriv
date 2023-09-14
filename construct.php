@@ -39,14 +39,55 @@
                     <div class='flexchild'>
                         <div class=faccount>$maxlevel</div>
                         <h3><img src='img/resources/$icon'>      $name</h3><br>
-                        <p>cost: <br>");
+                        <p>cost: </p> 
+                        <div class=icholder>");
 
-                        foreach ($input as $row) {
-                            echo("<img src='img/resources/".$row['name']."_icon.webp'>  ". $input[$row['name']] . "</p>");
+                        for($i = 0; $i < count($cost[0][0]); $i++) {
+                            $name = $cost[0][1][$i];
+                            $ct = $cost[0][0][$name];
+
+                            echo("
+                            <p>
+                                <img class='ico' src='img/resources/".$name."_icon.webp'>" . $ct . "
+                            </p>
+                            ");
                         }
 
-                        echo("<p>input: <br> $input</p>
-                        <p>produce: <br> $output</p>
+                        echo("
+                        </div>
+                        <p>input: </p> 
+                        <div class=icholder>
+                        ");
+
+                        for($i = 0; $i < count($input[0][0]); $i++) {
+                            $name = $input[0][1][$i];
+                            $ct = $input[0][0][$name];
+
+                            echo("
+                            <p>
+                                <img class='ico' src='img/resources/".$name."_icon.webp'>" . $ct . "
+                            </p>
+                            ");
+                        }
+
+                        echo("
+                        </div>
+                        <p>produce: </p>
+                        <div class=icholder>
+                        ");
+
+                        for($i = 0; $i < count($output[0][0]); $i++) {
+                            $name = $output[0][1][$i];
+                            $ct = $output[0][0][$name];
+
+                            echo("
+                            <p>
+                                <img class='ico' src='img/resources/".$name."_icon.webp'>" . $ct . "
+                            </p>
+                            ");
+                        }
+
+                        echo("</div>
                         <button>Purchase</button>
                     </div>
                 ");

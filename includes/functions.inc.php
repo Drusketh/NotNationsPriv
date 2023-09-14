@@ -354,11 +354,10 @@ function makeAssoc($in) {
         $keys[] = $arr[0];
         $vals[] = $arr[1];
     }
-    $out = array_combine($keys, $vals);
+    $outassoc = array_combine($keys, $vals);
+    $outname = $keys;
 
-    print_r($out["money"]);
-
-    return $out;
+    return array($outassoc, $keys);
 }
 
 ?>

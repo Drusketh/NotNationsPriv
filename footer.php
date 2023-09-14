@@ -29,7 +29,6 @@
                         mysqli_stmt_execute($rstmt);
                         $resources = json_decode(mysqli_fetch_assoc(mysqli_stmt_get_result($rstmt))['resources'], true);
                         $_SESSION["resources"] = $resources;
-                        print_r($resources);
                         mysqli_stmt_close($rstmt);
 
                         //
