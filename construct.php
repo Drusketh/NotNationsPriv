@@ -11,89 +11,100 @@
 ?>
 
 <div class='gamecontent'>
-    <div class='flexcontainer'>
-        <?php
-            $sql = "SELECT * FROM facref";
-            $stmt = mysqli_stmt_init($ng);
+    <section class='flexcontainer'>
+        <ul>
+            <?php
+                $sql = "SELECT * FROM `facref`;";
 
-            if (!mysqli_stmt_prepare($stmt, $sql)) {
-                header("location: ../index.php?error=holyshitwtf");
-                exit();
-            };
+                $stmt = mysqli_stmt_init($ng);
+                                                        
+                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    header("location: /NG/admanage.php?error=facrefstmtfail");
+                    exit();
+                }
+                                                        
+                mysqli_stmt_execute($stmt);
+                $query = mysqli_stmt_get_result($stmt);
+                mysqli_stmt_close($stmt);
+                
+                $factories[] = array();
+                while ($row = mysqli_fetch_assoc($query)) {
+                    array_push($factories, $row);
+                }
 
-            // mysqli_stmt_bind_param($stmt); Enable if I decide to restrict factory viewing by level
-            mysqli_stmt_execute($stmt);
-            $resultarr = mysqli_stmt_get_result($stmt);
-            mysqli_stmt_close($stmt);
-
-            while ($row = mysqli_fetch_assoc($resultarr)) {
-                $name = $row["name"];
-                $cost[] = makeAssoc($row["cost"]);
-                $input[] = makeAssoc($row["input"]);
-                $output[] = makeAssoc($row["output"]);
-                $maxlevel = $row["maxlvl"];
-                $icon = $row["icon"];
-                // $tier = $row[6];
-
-                echo("
-                    <div class='flexchild'>
-                        <div class=faccount>$maxlevel</div>
-                        <h3><img src='img/resources/$icon'>      $name</h3><br>
-                        <p>cost: </p> 
-                        <div class=icholder>");
-
-                        for($i = 0; $i < count($cost[0][0]); $i++) {
-                            $name = $cost[0][1][$i];
-                            $ct = $cost[0][0][$name];
-
-                            echo("
-                            <p>
-                                <img class='ico' src='img/resources/".$name."_icon.webp'>" . $ct . "
-                            </p>
-                            ");
-                        }
+                for ($idx = 0; $idx <= count($factories)-1; $idx++) {
+                    if (count($factories[$idx]) == 0) {}else {
+                        $i = $idx-1;
+                        
+                        $name = $factories[$idx]["name"];
+                        $cost[] = makeAssoc($factories[$idx]["cost"]);
+                        $input[] = makeAssoc($factories[$idx]["input"]);
+                        $output[] = makeAssoc($factories[$idx]["output"]);
+                        $maxlevel = $factories[$idx]["maxlvl"];
+                        $icon = $factories[$idx]["icon"];
+                        // $tier = $factories[$i][6];
 
                         echo("
-                        </div>
-                        <p>input: </p> 
-                        <div class=icholder>
+                            <li class='tile'>
+                                <div class=faccount>$maxlevel</div>
+                                <h3><img src='img/resources/$icon'>      $name</h3><br>
+                                <p>cost: </p> 
+                                <div class=icholder>");
+
+                                for($ci = 0; $ci < count($cost[$i][0]); $ci++) {
+                                    $name = $cost[$i][1][$ci];
+                                    $ct = $cost[$i][0][$name];
+
+                                    echo("
+                                    <p>
+                                        <img class='ico' src='img/resources/".$name."_icon.webp'>" . $ct . "
+                                    </p>
+                                    ");
+                                }
+
+                                echo("
+                                </div>
+                                <p>input: </p> 
+                                <div class=icholder>
+                                ");
+
+                                for($ii = 0; $ii < count($input[$i][0]); $ii++) {
+                                    $name = $input[$i][1][$ii];
+                                    $ct = $input[$i][0][$name];
+
+                                    echo("
+                                    <p>
+                                        <img class='ico' src='img/resources/".$name."_icon.webp'>" . $ct . "
+                                    </p>
+                                    ");
+                                }
+
+                                echo("
+                                </div>
+                                <p>produce: </p>
+                                <div class=icholder>
+                                ");
+
+                                for($oi = 0; $oi < count($output[$i][0]); $oi++) {
+                                    $name = $output[$i][1][$oi];
+                                    $ct = $output[$i][0][$name];
+
+                                    echo("
+                                    <p>
+                                        <img class='ico' src='img/resources/".$name."_icon.webp'>" . $ct . "
+                                    </p>
+                                    ");
+                                }
+                                echo("</div>");
+
+                                echo("<button>Purchase</button>
+                            </li>
                         ");
-
-                        for($i = 0; $i < count($input[0][0]); $i++) {
-                            $name = $input[0][1][$i];
-                            $ct = $input[0][0][$name];
-
-                            echo("
-                            <p>
-                                <img class='ico' src='img/resources/".$name."_icon.webp'>" . $ct . "
-                            </p>
-                            ");
-                        }
-
-                        echo("
-                        </div>
-                        <p>produce: </p>
-                        <div class=icholder>
-                        ");
-
-                        for($i = 0; $i < count($output[0][0]); $i++) {
-                            $name = $output[0][1][$i];
-                            $ct = $output[0][0][$name];
-
-                            echo("
-                            <p>
-                                <img class='ico' src='img/resources/".$name."_icon.webp'>" . $ct . "
-                            </p>
-                            ");
-                        }
-
-                        echo("</div>
-                        <button>Purchase</button>
-                    </div>
-                ");
-            }
-        ?>
-    </div>
+                    }
+                }
+            ?>
+        </ul>
+    </section>
 </div>
 
 <?php

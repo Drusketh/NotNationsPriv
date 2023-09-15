@@ -358,6 +358,8 @@ function makeAssoc($in) {
     $outname = $keys;
 
     return array($outassoc, $keys);
+    unset($outassoc);
+    unset($keys);
 }
 
 ?>
