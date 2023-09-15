@@ -11,7 +11,7 @@
 ?>
 
 <div class='gamecontent'>
-    <section class='flexcontainer'>
+    <section class='tilecontainer factories'>
         <ul>
             <?php
                 $sql = "SELECT * FROM `facref`;";

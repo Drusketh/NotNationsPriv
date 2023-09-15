@@ -107,17 +107,18 @@ html, body {
     left: 10%;
 } */
 
-.flexcontainer {
-    padding: 4rem;
+.tilecontainer {
+    padding: 2rem;
 }
   
-.flexcontainer > ul {
+.tilecontainer > ul {
+    margin: auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
     grid-gap: 2rem;
 }
 
-.flexcontainer > ul > li.tile {
+.tilecontainer > ul > li.tile {
     padding: 1rem;
     /* margin: 0.6rem; */
     border-radius: 5px;
@@ -153,7 +154,7 @@ img.ico {
 .gamecontent {
     height: 100%;
     width: 100%;
-    padding: 4rem 5rem;
+    padding: 4rem;
     background-color: #f5f5f5;
 }
 
