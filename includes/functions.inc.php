@@ -342,10 +342,12 @@ function makeFactory($ng, $name, $cost, $input, $output, $level, $icon) {
     mysqli_stmt_close($stmt);
 }
 
-function makeAssoc($in) {
+function makeAssoc($in, $key) {
     $result = [];
     $keys = [];
     $vals = [];
+    $outassoc = [];
+    $output = [];
 
     $prep = str_replace(array("{", "}", '"'), array("", "", ""), explode(",", $in));
 
@@ -355,11 +357,15 @@ function makeAssoc($in) {
         $vals[] = $arr[1];
     }
     $outassoc = array_combine($keys, $vals);
-    $outname = $keys;
 
-    return array($outassoc, $keys);
-    unset($outassoc);
-    unset($keys);
+    $output = array($outassoc, $keys);
+
+    if ($key = 1) {
+        return $output;
+    }
+    else {
+        return $outassoc;
+    }
 }
 
 ?>

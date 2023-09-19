@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="css/sidebar.css">
         <link rel="stylesheet" href="css/dropdown.css">
         <link rel="stylesheet" href="css/footer.css">
+        <link rel="stylesheet" href="css/modal.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Old+Permic&display=swap" rel="stylesheet">
@@ -24,6 +25,7 @@
         <!-- <script src="js/p5.js"></script> -->
         <script src="js/sidebar.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/modal.js"></script>
     </head>
     <body>
         <div id="mySidebar" class="sidebar">
@@ -31,6 +33,15 @@
             <a href="nation.php">Home</a>
             <a href="factories.php">Factories</a>
             <a href="construct.php">Construct</a>
+        </div>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <?php
+                    $_SESSION["MODAL_CONTENT"];
+                ?>
+            </div>
         </div>
 
         <div id="page-container" class="page-container">
