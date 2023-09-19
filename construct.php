@@ -45,6 +45,7 @@
                         // $tier = $factories[$i][6];
 
                         echo("
+                        <form class='factory' action='includes/mkfac.inc.php' method='POST' enctype='multipart/form-data'>
                             <li class='tile'>
                                 <div class=faccount>$maxlevel</div>
                                 <h3><img src='img/resources/$icon'>      $name</h3><br>
@@ -97,8 +98,9 @@
                                 }
                                 echo("</div>");
 
-                                echo("<button>Purchase</button>
+                                echo("<button type='submit' name='submit' value='upload'>Purchase</button>
                             </li>
+                        </form>
                         ");
                     }
                 }

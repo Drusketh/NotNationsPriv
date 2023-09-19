@@ -41,16 +41,20 @@
                 // echo "<br>";
                 // echo "Color: " . $apple->get_color();
                 
-                echo "
+                echo("
+                    
                     <div class='floatmenu'>
+                        <div class='title'>
+                            <h1 class='title nname'>{$_SESSION['nname']}</h1>
+                        </div>
                         <div class='white'>
-                            <h1 class='nname'>{$_SESSION['nname']}</h1>
+                            
                             <h1 class='lname'>Leader Name: {$_SESSION['name']}</h1>
                             <h1 class='popul'>Population: {$_SESSION['population']}</h1>
                             <h1 class='tier'>Tier: {$_SESSION['tier']}</h1>
                         </div>
                     </div>
-                ";
+                ");
             }
         }
         else {
