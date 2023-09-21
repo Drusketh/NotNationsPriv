@@ -38,9 +38,7 @@
         <div id="modal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <?php
-                    $_SESSION["MODAL_CONTENT"];
-                ?>
+                
             </div>
         </div>
 

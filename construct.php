@@ -35,7 +35,7 @@
                 for ($idx = 0; $idx <= count($factories)-1; $idx++) {
                     if (count($factories[$idx]) == 0) {}else {
                         
-                        $name = $factories[$idx]["name"];
+                        $facname = $factories[$idx]["name"];
                         $id = $idx;
                         $count = 1;
                         $cost = makeAssoc($factories[$idx]["cost"], 1);
@@ -47,12 +47,10 @@
                         // print_r($cost);
 
                         echo("
-                        <form class='factory' action='includes/purchase.inc.php' method='POST' enctype='multipart/form-data'>
-                            <li class='tile'>
-                                <div class=faccount>$maxlevel</div>
-                                <h3><img src='img/resources/$icon'>      $name</h3><br>
+                            <li class='tile " . $facname . "'>
+                                <h3><img src='img/resources/$icon'>      $facname</h3><br>
                                 <p>cost: </p> 
-                                <div class=icholder>");
+                                <div class='icholder cost'>");
 
                                 for($ci = 0; $ci < count($cost[0]); $ci++) {
                                     $name = $cost[1][$ci];
@@ -60,7 +58,7 @@
 
                                     echo("
                                     <p>
-                                        <img class='ico' src='img/resources/".$name."_icon.webp'>" . $ct . "
+                                        <img class='ico' src='img/resources/".$name."_icon.webp'> " . $ct . "
                                     </p>
                                     ");
                                 }
@@ -68,7 +66,7 @@
                                 echo("
                                 </div>
                                 <p>input: </p> 
-                                <div class=icholder>
+                                <div class='icholder input'>
                                 ");
 
                                 for($ii = 0; $ii < count($input[0]); $ii++) {
@@ -77,7 +75,7 @@
 
                                     echo("
                                     <p>
-                                        <img class='ico' src='img/resources/".$name."_icon.webp'>" . $ct . "
+                                        <img class='ico' src='img/resources/".$name."_icon.webp'> " . $ct . "
                                     </p>
                                     ");
                                 }
@@ -85,7 +83,7 @@
                                 echo("
                                 </div>
                                 <p>produce: </p>
-                                <div class=icholder>
+                                <div class='icholder output'>
                                 ");
 
                                 for($oi = 0; $oi < count($output[0]); $oi++) {
@@ -94,21 +92,16 @@
 
                                     echo("
                                     <p>
-                                        <img class='ico' src='img/resources/".$name."_icon.webp'>" . $ct . "
+                                        <img class='ico' src='img/resources/".$name."_icon.webp'> " . $ct . "
                                     </p>
                                     ");
                                 }
-                                echo("</div>
-                                    <input type='hidden' name='id' value=" . $id . ">
-                                    <input type='hidden' name='count' value=" . $count . ">
-                                    <span class='popup'>Purchase</button>
-                                ");
-                                
-                                // <button type='submit' name='submit' value='upload'>Purchase</button>
-
                                 echo("
+
+                                </div>
+                                <br>
+                                <span class='popup'><data name='" . $facname . "'cost='" . json_encode($cost[0]) . "'>Purchase</data></button>
                             </li>
-                        </form>
                         ");
                     }
                 }
