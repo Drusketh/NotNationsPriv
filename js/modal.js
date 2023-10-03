@@ -1,5 +1,5 @@
 var card;
-var form = "<form class='factory faccard' action='includes/purchase.inc.php' method='POST' enctype='multipart/form-data'>";
+var form = "<form class='factory faccard' action='includes/purchase.inc.php' method='GET' enctype='multipart/form-data'>";
 var button = "<button type='submit' name='submit' value='upload'>Purchase</button>";
 var count = "";
 
@@ -11,10 +11,12 @@ $(document).ready(function(){
         card = $(this).parent().clone();
 
         modal.append(form); // add form header
+
         $("div.modal-content").children(".factory").append(card); // add card display
 
         card.children()[9].remove(); // Remove purchase span
 
+        card.append();
         card.append(button); // add form purchase button
         modal.append("</form>");
     });

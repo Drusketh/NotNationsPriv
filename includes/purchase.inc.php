@@ -6,6 +6,7 @@
 
     if (isset($_POST["submit"])) {
         // Gather Factories from nation table
+        $type = $_POST["type"]
         $id = 1;
         $sql = "SELECT `factories` from `nation` WHERE `nation`.`id` = ?;";
         $stmt = mysqli_stmt_init($ng);
