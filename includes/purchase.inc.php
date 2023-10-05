@@ -4,26 +4,56 @@
 
     session_start();
 
-    if (isset($_POST["submit"])) {
-        // Gather Factories from nation table
-        $type = $_POST["type"]
-        $id = 1;
-        $sql = "SELECT `factories` from `nation` WHERE `nation`.`id` = ?;";
-        $stmt = mysqli_stmt_init($ng);
-                                                        
-        if (!mysqli_stmt_prepare($stmt, $sql)) {
-            header("location: /NG/admanage.php?error=facrefstmtfail");
-            exit();
-        }
-        
-        mysqli_stmt_bind_param($stmt, "i", $id);
-        mysqli_stmt_execute($stmt);
-        $query = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
-        mysqli_stmt_close($stmt);
+    if (isset($_GET["submit"])) {
+        $type = $_GET["t"];
+        $id = $_GET["i"];
 
-        // Convert to assoc array
-        $usr_factories = json_decode($query["factories"], true);
-        print_r($_SESSION["resources"]);
+        switch ($type) {
+            case "f": // Factory purchase
+                if (true) {
+                    $sql = "SELECT `factories` from `nation` WHERE `nation`.`id` = ?;";
+                    $stmt = mysqli_stmt_init($ng);
+                                                                    
+                    if (!mysqli_stmt_prepare($stmt, $sql)) {
+                        header("location: /NG/admanage.php?error=facrefstmtfail");
+                        exit();
+                    }
+                    
+                    mysqli_stmt_bind_param($stmt, "i", $_SESSION['uid']);
+                    mysqli_stmt_execute($stmt);
+                    $query = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+                    mysqli_stmt_close($stmt);
+                }
+
+                // Convert to assoc array
+                $usr_factories = json_decode($query["factories"], true);
+
+                
+                
+                if (true) {
+                    $sql = "SELECT `cost` from `facref` WHERE `id` = ?;";
+                    $stmt = mysqli_stmt_init($ng);
+                                                                    
+                    if (!mysqli_stmt_prepare($stmt, $sql)) {
+                        header("location: /NG/admanage.php?error=facrefstmtfail");
+                        exit();
+                    }
+                    
+                    mysqli_stmt_bind_param($stmt, "i", $id);
+                    mysqli_stmt_execute($stmt);
+                    $query = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+                    mysqli_stmt_close($stmt);
+                }
+
+                $cost = json_decode($query['cost'], true);
+
+                print_r($usr_factories);
+                echo "<br>";
+                print_r($_SESSION["resources"]);
+                echo "<br>";
+                print_r($cost);
+            break;
+        }
 
 
 
