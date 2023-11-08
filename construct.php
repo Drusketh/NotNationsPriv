@@ -34,9 +34,8 @@
 
                 for ($idx = 0; $idx <= count($factories)-1; $idx++) {
                     if (count($factories[$idx]) == 0) {}else {
-                        
                         $facname = $factories[$idx]["name"];
-                        $id = $idx;
+                        $id = $factories[$idx]["id"];
                         $count = 1;
                         $cost = makeAssoc($factories[$idx]["cost"], 1);
                         $input = makeAssoc($factories[$idx]["input"], 1);
@@ -44,10 +43,11 @@
                         $maxlevel = $factories[$idx]["maxlvl"];
                         $icon = $factories[$idx]["icon"];
                         // $tier = $factories[$i][6];
-                        // print_r($cost);
 
                         echo("
                             <li class='tile " . $facname . "'>
+                                <input type='hidden' name='i' value=" . $id . ">
+                                <input type='hidden' name='t' value='f'>
                                 <h3><img src='img/resources/$icon'>      $facname</h3><br>
                                 <p>cost: </p> 
                                 <div class='icholder cost'>");

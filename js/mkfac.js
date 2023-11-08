@@ -13,8 +13,6 @@ $(document).ready(function() {
             var resource = $(test).children()[0];
             var count = $(test).children()[1];
 
-            console.log($(this).parent().children().length);
-
             $(resource).attr('name', $(resource).attr('name') + ct);
             $(count).attr('name', $(count).attr('name') + ct);
         }

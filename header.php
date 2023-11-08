@@ -36,10 +36,7 @@
         </div>
 
         <div id="modal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                
-            </div>
+        <div class='modal-content'><span class='close'>&times;</span></div>
         </div>
 
         <div id="page-container" class="page-container">
