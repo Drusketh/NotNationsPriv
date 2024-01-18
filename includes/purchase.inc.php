@@ -7,10 +7,12 @@
     if (isset($_GET["submit"])) {
         $type = $_GET["t"];
         $id = $_GET["i"];
+        $count = $_GET["count"];
 
         switch ($type) {
             case "f": // Factory purchase
                 if (true) {
+                    //Factories
                     $sql = "SELECT `factories` from `nation` WHERE `nation`.`id` = ?;";
                     $stmt = mysqli_stmt_init($ng);
                                                                     
@@ -21,16 +23,24 @@
                     
                     mysqli_stmt_bind_param($stmt, "i", $_SESSION['uid']);
                     mysqli_stmt_execute($stmt);
-                    $query = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+                    $usr_factories = json_decode(mysqli_fetch_assoc(mysqli_stmt_get_result($stmt))["factories"], true);
                     mysqli_stmt_close($stmt);
-                }
+                    
+                    //Resources
+                    $sql = "SELECT `resources` from `nation` WHERE `nation`.`id` = ?;";
+                    $stmt = mysqli_stmt_init($ng);
+                                                                    
+                    if (!mysqli_stmt_prepare($stmt, $sql)) {
+                        header("location: /NG/admanage.php?error=facrefstmtfail");
+                        exit();
+                    }
+                    
+                    mysqli_stmt_bind_param($stmt, "i", $_SESSION['uid']);
+                    mysqli_stmt_execute($stmt);
+                    $usr_resources = json_decode(mysqli_fetch_assoc(mysqli_stmt_get_result($stmt))["resources"], true);
+                    mysqli_stmt_close($stmt);
 
-                // Convert to assoc array
-                $usr_factories = json_decode($query["factories"], true);
-
-                
-                
-                if (true) {
+                    //Cost
                     $sql = "SELECT `cost` from `facref` WHERE `id` = ?;";
                     $stmt = mysqli_stmt_init($ng);
                                                                     
@@ -41,17 +51,54 @@
                     
                     mysqli_stmt_bind_param($stmt, "i", $id);
                     mysqli_stmt_execute($stmt);
-                    $query = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+                    $cost = makeAssoc(mysqli_fetch_assoc(mysqli_stmt_get_result($stmt))['cost'], 1);
                     mysqli_stmt_close($stmt);
                 }
 
-                $cost = json_decode($query['cost'], true);
-
+                
+                echo("count: ".$count);
+                echo("<br> Current Factories <br>");
                 print_r($usr_factories);
-                echo "<br>";
+                echo("<br> Current Resources <br>");
                 print_r($_SESSION["resources"]);
-                echo "<br>";
+                echo("<br> Total Cost <br>");
                 print_r($cost);
+                $i=0;
+                foreach ($cost[0] as $v) {
+                    $cres = $cost[1][$i];
+                    $camnt = $usr_resources[$cres];
+                    $tres = $v*$count;
+                    echo("<br>".$cres.": ".$camnt);
+                    echo("<br> cost: ".$tres);
+                    $i++;
+                    if ($camnt < $tres) {
+                        echo("<br> cant afford");
+                    }
+                    else {
+                        $usr_resources[$cres]-=$tres;
+                    }
+
+                    echo("<br>".$cres.": ".$camnt."<br>");
+                }
+                print_r($usr_resources);
+                echo("<br>");
+                $usr_resources = json_encode($usr_resources);
+                echo($usr_resources);
+
+                if (true) {
+                    $sql = "UPDATE `nation` SET resources=? WHERE `uid` = ?;";
+                    $stmt = mysqli_stmt_init($ng);
+                                                                    
+                    if (!mysqli_stmt_prepare($stmt, $sql)) {
+                        header("location: /NG/admanage.php?error=facrefstmtfail");
+                        exit();
+                    }
+                    
+                    mysqli_stmt_bind_param($stmt, "si", $usr_resources, $_SESSION['uid']);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_close($stmt);
+                }
+                //{"money":1000000,"power":1000000,"food":1000000,"bm":1000000,"cg":1000000,"metal":1000000,"ammunition":1000000,"fuel":1000000,"uranium":1000000}
             break;
         }
 
