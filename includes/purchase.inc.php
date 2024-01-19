@@ -7,6 +7,8 @@
     if (isset($_GET["submit"])) {
         $type = $_GET["t"];
         $id = $_GET["i"];
+        $fid = $id-1;
+        echo($id);
         $count = $_GET["count"];
 
         switch ($type) {
@@ -41,7 +43,7 @@
                     mysqli_stmt_close($stmt);
 
                     //Cost
-                    $sql = "SELECT `cost` from `facref` WHERE `id` = ?;";
+                    $sql = "SELECT * from `facref`;";
                     $stmt = mysqli_stmt_init($ng);
                                                                     
                     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -49,20 +51,26 @@
                         exit();
                     }
                     
-                    mysqli_stmt_bind_param($stmt, "i", $id);
                     mysqli_stmt_execute($stmt);
-                    $cost = makeAssoc(mysqli_fetch_assoc(mysqli_stmt_get_result($stmt))['cost'], 1);
+                    $q1 = mysqli_stmt_get_result($stmt);
                     mysqli_stmt_close($stmt);
+                    while($facdata[] = mysqli_fetch_assoc($q1));
+                    array_pop($facdata);
                 }
 
-                
+                print_r($facdata);
+
+                $name = '"'.$facdata[$fid]["name"].'"';
+                $cost = makeAssoc($facdata[$fid]["cost"], 1);
+                echo($name."<br>");
                 echo("count: ".$count);
                 echo("<br> Current Factories <br>");
                 print_r($usr_factories);
                 echo("<br> Current Resources <br>");
                 print_r($_SESSION["resources"]);
                 echo("<br> Total Cost <br>");
-                print_r($cost);
+                print_r($cost[1]);
+
                 $i=0;
                 foreach ($cost[0] as $v) {
                     $cres = $cost[1][$i];
@@ -80,10 +88,20 @@
 
                     echo("<br>".$cres.": ".$camnt."<br>");
                 }
-                print_r($usr_resources);
-                echo("<br>");
+                
                 $usr_resources = json_encode($usr_resources);
-                echo($usr_resources);
+
+
+                $i=0;
+                $facs = array();
+                foreach ($facdata as $v) {
+                    print_r($v["name"]);
+                    echo("<br>");
+                    $facs[$v["name"]] = 0;
+                    $i++;
+                }
+
+                print_r(json_encode($facs));
 
                 if (true) {
                     $sql = "UPDATE `nation` SET resources=? WHERE `uid` = ?;";
@@ -97,7 +115,19 @@
                     mysqli_stmt_bind_param($stmt, "si", $usr_resources, $_SESSION['uid']);
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
-                }
+
+                //     $sql = "UPDATE `nation` SET factories=? WHERE `uid` = ?;";
+                //     $stmt = mysqli_stmt_init($ng);
+                                                                    
+                //     if (!mysqli_stmt_prepare($stmt, $sql)) {
+                //         header("location: /NG/admanage.php?error=facrefstmtfail");
+                //         exit();
+                //     }
+                    
+                //     mysqli_stmt_bind_param($stmt, "si", $usr_resources, $_SESSION['uid']);
+                //     mysqli_stmt_execute($stmt);
+                //     mysqli_stmt_close($stmt);
+                }   
                 //{"money":1000000,"power":1000000,"food":1000000,"bm":1000000,"cg":1000000,"metal":1000000,"ammunition":1000000,"fuel":1000000,"uranium":1000000}
             break;
         }
