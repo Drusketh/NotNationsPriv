@@ -368,6 +368,12 @@ function makeAssoc($in, $key) {
     }
 }
 
+function makeGCard($data) {
+    echo("
+        <li class='tile'>
+        </li>
+    ");
+}
 function makeCard($facname, $id, $count, $cost, $input, $output, $maxlevel, $icon) {
     echo("
         <li class='tile " . $facname . "'>

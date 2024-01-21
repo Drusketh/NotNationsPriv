@@ -11,40 +11,44 @@
 ?>
 
 <div class='gamecontent'>
-    <div class='flexcontainer'>
+    <div class='tilecontainer'>
+        <ul>
         <?php
-            $stmt = mysqli_prepare($ng, "SELECT factories FROM nation WHERE uid=".$_SESSION["uid"]);
+            $sql = "SELECT * FROM `facref`;";
+            $stmt = mysqli_stmt_init($ng);
+                                                    
+            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                header("location: /NG/admanage.php?error=facrefstmtfail");
+                exit();
+            }
+                                                    
+            mysqli_stmt_execute($stmt);
+            $q1 = mysqli_stmt_get_result($stmt);
+            mysqli_stmt_close($stmt);
+            
+            while($facref[] = mysqli_fetch_assoc($q1));
+            array_pop($facref);
+
+            $sql = "SELECT factories FROM nation WHERE uid=".$_SESSION["uid"].";";
+            $stmt = mysqli_stmt_init($ng);
+
+            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                header("location: /NG/admanage.php?error=facrefstmtfail");
+                exit();
+            }
             
             mysqli_stmt_execute($stmt);
-            $resultarr = mysqli_stmt_get_result($stmt);
+            $q1 = mysqli_stmt_get_result($stmt);
             mysqli_stmt_close($stmt);
 
-            while ($row = mysqli_fetch_array($resultarr, MYSQLI_ASSOC)) {
-                print_r(makeAssoc($row['factories'], 1)[0]);
-                // $id = $row[0];
-                // $name = $row[1];
-                // $cost = $row[2];
-                // $produce = $row[3];
-                // $level = $row[4];
-                // $icon = $row[5];
-                // echo($id);
-                // echo($name);
-                // echo($cost);
-                // echo($produce);
-                // echo($level);
-                // echo($icon);
-                // echo("
-                //     <div class='flexchild'>
-                //         <div class=faccount>".$count."</div>
-                //         <h3>ex factory</h3><br>
-                //         <p>facnum:". $count."</p>
-                //         <p>amount:". $progression."/24</p>
-                //         <p>level:". $level."</p>
-                //         <button>collect</button>
-                //     </div>
-                // ");
+            while($factories[] = mysqli_fetch_assoc($q1));
+            array_pop($factories);
+
+            for ($i = 1; $i <= 100; $i++) {
+                makeGCard($factories);
             }
         ?>
+        </ul>
     </div>
 </div>
 

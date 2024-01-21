@@ -8,7 +8,6 @@
         $type = $_GET["t"];
         $id = $_GET["i"];
         $fid = $id-1;
-        echo($id);
         $count = $_GET["count"];
 
         switch ($type) {
@@ -58,50 +57,46 @@
                     array_pop($facdata);
                 }
 
-                print_r($facdata);
-
-                $name = '"'.$facdata[$fid]["name"].'"';
+                $name = $facdata[$fid]["name"];
                 $cost = makeAssoc($facdata[$fid]["cost"], 1);
-                echo($name."<br>");
-                echo("count: ".$count);
-                echo("<br> Current Factories <br>");
-                print_r($usr_factories);
-                echo("<br> Current Resources <br>");
-                print_r($_SESSION["resources"]);
-                echo("<br> Total Cost <br>");
-                print_r($cost[1]);
 
                 $i=0;
                 foreach ($cost[0] as $v) {
                     $cres = $cost[1][$i];
                     $camnt = $usr_resources[$cres];
                     $tres = $v*$count;
-                    echo("<br>".$cres.": ".$camnt);
-                    echo("<br> cost: ".$tres);
+                    $pass = 0;
+                    
                     $i++;
                     if ($camnt < $tres) {
-                        echo("<br> cant afford");
+                        $pass = 0;
                     }
                     else {
-                        $usr_resources[$cres]-=$tres;
+                        $pass = 1;
                     }
+                }
 
-                    echo("<br>".$cres.": ".$camnt."<br>");
+                if ($pass = 1) {
+                    $usr_resources[$cres]-=$tres;
+                    $usr_factories[$name]+=$count;
+
+                    $usr_resources = json_encode($usr_resources);
+                    $usr_factories = json_encode($usr_factories);
+                }
+                else {
+                    //Fail condition. Send back to construct page with an error. idk how they got here since the form should prevent them eventually.
                 }
                 
-                $usr_resources = json_encode($usr_resources);
+                // $i=0;
+                // $facs = array();
+                // foreach ($facdata as $v) {
+                //     print_r($v["name"]);
+                //     echo("<br>");
+                //     $facs[$v["name"]] = 0;
+                //     $i++;
+                // }
 
-
-                $i=0;
-                $facs = array();
-                foreach ($facdata as $v) {
-                    print_r($v["name"]);
-                    echo("<br>");
-                    $facs[$v["name"]] = 0;
-                    $i++;
-                }
-
-                print_r(json_encode($facs));
+                // print_r(json_encode($facs));
 
                 if (true) {
                     $sql = "UPDATE `nation` SET resources=? WHERE `uid` = ?;";
@@ -116,64 +111,27 @@
                     mysqli_stmt_execute($stmt);
                     mysqli_stmt_close($stmt);
 
-                //     $sql = "UPDATE `nation` SET factories=? WHERE `uid` = ?;";
-                //     $stmt = mysqli_stmt_init($ng);
+                    $sql = "UPDATE `nation` SET factories=? WHERE `uid` = ?;";
+                    $stmt = mysqli_stmt_init($ng);
                                                                     
-                //     if (!mysqli_stmt_prepare($stmt, $sql)) {
-                //         header("location: /NG/admanage.php?error=facrefstmtfail");
-                //         exit();
-                //     }
+                    if (!mysqli_stmt_prepare($stmt, $sql)) {
+                        header("location: /NG/admanage.php?error=facrefstmtfail");
+                        exit();
+                    }
                     
-                //     mysqli_stmt_bind_param($stmt, "si", $usr_resources, $_SESSION['uid']);
-                //     mysqli_stmt_execute($stmt);
-                //     mysqli_stmt_close($stmt);
+                    mysqli_stmt_bind_param($stmt, "si", $usr_factories, $_SESSION['uid']);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_close($stmt);
                 }   
                 //{"money":1000000,"power":1000000,"food":1000000,"bm":1000000,"cg":1000000,"metal":1000000,"ammunition":1000000,"fuel":1000000,"uranium":1000000}
             break;
         }
 
-
-
-
-
-
-        
-        // Update factories list in nation table with new factories
-        // $sql = "UPDATE `nation` SET `factories` = ? WHERE `nation`.`id` = ?;";
-        // $stmt = mysqli_stmt_init($ng);
-                                                        
-        // if (!mysqli_stmt_prepare($stmt, $sql)) {
-        //     header("location: /NG/admanage.php?error=facrefstmtfail");
-        //     exit();
-        // }
-        
-        // mysqli_stmt_bind_param($stmt, "si", $fac, $id);
-        // mysqli_stmt_execute($stmt);
-        // mysqli_stmt_close($stmt);
-
-
-        
-        // if (empty($_POST["name"]) || empty($_POST["ccount"]) || empty($_POST["icount"]) || empty($_POST["ocount"])) {
-        //     //header("location: ../admanage.php");
-        //     echo("e");
-        // }
-
-        // $name = $_POST["name"];
-        // $level = $_POST["level"];
-        // $icon = $_FILES['icon'];
-        // $cost = $_POST["cost"] . ":" . $_POST["ccount"] . ",";
-        // $input = $_POST["input"] . ":" . $_POST["icount"] . ",";
-        // $output = $_POST["output"] . ":" . $_POST["ocount"] . ",";
-
-        // This part of the page needs to add a prompt for the admin to view the factory in its completed stage and verify if it is correct, then prompt for creation.
-
-        // makeFactory($ng, $name, $cost, $input, $output, $level, $icon);
-
-        // header("location: /NG/admanage.php?error=facsuccess", true);
+        header("location: ../construct.php");
         exit();
     }
     else {
-        //header("location: ../signup.php");
+        header("location: ../signup.php");
         echo("subfail");
         exit();
     }

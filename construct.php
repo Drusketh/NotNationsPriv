@@ -15,7 +15,6 @@
         <ul>
             <?php
                 $sql = "SELECT * FROM `facref`;";
-
                 $stmt = mysqli_stmt_init($ng);
                                                         
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -24,13 +23,11 @@
                 }
                                                         
                 mysqli_stmt_execute($stmt);
-                $query = mysqli_stmt_get_result($stmt);
+                $q1 = mysqli_stmt_get_result($stmt);
                 mysqli_stmt_close($stmt);
                 
-                $factories[] = array();
-                while ($row = mysqli_fetch_assoc($query)) {
-                    array_push($factories, $row);
-                }
+                while($factories[] = mysqli_fetch_assoc($q1));
+                array_pop($factories);
 
                 for ($idx = 0; $idx <= count($factories)-1; $idx++) {
                     if (count($factories[$idx]) == 0) {}else {
