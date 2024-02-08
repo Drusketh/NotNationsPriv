@@ -131,10 +131,20 @@ div.title {
 
 li.tile {
     list-style-type: none;
-    padding: 1rem;
+    padding: 0.4rem 1.3rem 1rem;
+    /* padding-top: 0rem; */
+
     border-radius: 5px;
     box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
     background-color: #ffffff; 
+}
+
+div.ctitle {
+    /* text-align: center; */
+}
+
+.icon {
+    vertical-align: middle;
 }
 
 .icholder{

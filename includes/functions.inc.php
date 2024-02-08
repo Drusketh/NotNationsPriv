@@ -368,9 +368,48 @@ function makeAssoc($in, $key) {
     }
 }
 
-function makeGCard($data) {
+function makeGCard($type, $data) {
+    $title = $data[0];
+    $icon = $data[1];
     echo("
         <li class='tile'>
+            <div class='ctitle'>
+                <h3 class='title'><img class='icon' src=$icon>$title</h3><br>
+            </div>
+    ");
+    switch ($type) {
+        case "factory":
+            $count = $data[2];
+            $input = $data[3];
+            $output = $data[4];
+            $level = $data[5];
+
+            echo("
+                <div>$count</div>
+                <div> ");
+                    for($ii = 0; $ii < count($input[0]); $ii++) {
+                        $name = $input[1][$ii];
+                        $ct = $input[0][$name];
+                        
+                        echo("
+                        <p>
+                            <img class='ico' src='img/resources/".$name."_icon.webp'> " . $ct . "
+                        </p>
+                        ");
+                    }
+            echo("
+                </div>
+                <div>
+                
+                </div>
+            ");
+            break;
+        case "unit":
+            break;
+        case "card":
+            break;
+    }
+    echo("
         </li>
     ");
 }

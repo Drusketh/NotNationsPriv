@@ -44,8 +44,11 @@
             while($factories[] = mysqli_fetch_assoc($q1));
             array_pop($factories);
 
+            print_r($factories);
+
             for ($i = 1; $i <= 100; $i++) {
-                makeGCard($factories);
+                $data = [round(random_int(0, 120000)),1];
+                makeGCard("Factory", $data);
             }
         ?>
         </ul>
