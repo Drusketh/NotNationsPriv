@@ -41,12 +41,16 @@
             $q1 = mysqli_stmt_get_result($stmt);
             mysqli_stmt_close($stmt);
 
-            while($factories[] = mysqli_fetch_assoc($q1));
-            array_pop($factories);
+            $factories = json_decode(mysqli_fetch_assoc($q1)["factories"], true);
 
             print_r($factories);
 
-            for ($i = 1; $i <= 100; $i++) {
+            foreach ($factories as $f) {
+                print_r($f);
+                echo("<br>");
+            }
+
+            for ($i = 1; $i <= 1000; $i++) {
                 $data = [round(random_int(0, 120000)),1];
                 makeGCard("Factory", $data);
             }
