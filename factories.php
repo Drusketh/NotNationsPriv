@@ -14,45 +14,59 @@
     <div class='tilecontainer'>
         <ul>
         <?php
-            $sql = "SELECT * FROM `facref`;";
-            $stmt = mysqli_stmt_init($ng);
-                                                    
-            if (!mysqli_stmt_prepare($stmt, $sql)) {
-                header("location: /NG/admanage.php?error=facrefstmtfail");
-                exit();
+            {
+                $sql = "SELECT factories FROM nation WHERE uid=".$_SESSION["uid"].";";
+                $stmt = mysqli_stmt_init($ng);
+                if (!mysqli_stmt_prepare($stmt, $sql)) {
+                    header("location: /NG/admanage.php?error=facrefstmtfail");
+                    exit();
+                }
+                mysqli_stmt_execute($stmt);
+                $q1 = mysqli_stmt_get_result($stmt);
+                mysqli_stmt_close($stmt);
             }
-                                                    
-            mysqli_stmt_execute($stmt);
-            $q1 = mysqli_stmt_get_result($stmt);
-            mysqli_stmt_close($stmt);
-            
-            while($facref[] = mysqli_fetch_assoc($q1));
+
+            {
+                $sql2 = "SELECT * FROM `facref`;";
+                $stmt2 = mysqli_stmt_init($ng);
+                if (!mysqli_stmt_prepare($stmt2, $sql2)) {
+                    header("location: /NG/admanage.php?error=facrefstmtfail");
+                    exit();
+                }
+                mysqli_stmt_execute($stmt2);
+                $q2 = mysqli_stmt_get_result($stmt2);
+                mysqli_stmt_close($stmt2);
+            }
+
+            $check = mysqli_fetch_assoc($q1)["factories"];
+
+            while($facref[] = mysqli_fetch_assoc($q2));
             array_pop($facref);
 
-            $sql = "SELECT factories FROM nation WHERE uid=".$_SESSION["uid"].";";
-            $stmt = mysqli_stmt_init($ng);
+            if (strlen($check) <= 2) {
+                echo("
+                    <h1> You don't have any factories built yet! Click on the \"Construct\" Tab to build some!
+                ");
+            } else{
+                $usr_factories = makeAssoc($check, 1);
+                for ($i = 0; $i <= count($usr_factories[0])-1; $i++) {
+                    $obj = $usr_factories[1][$i];
+                    $facname = $obj;
+                    $count = $usr_factories[0][$obj];
+                    $input = makeAssoc($facref[$i]["input"], 1);
+                    $output = makeAssoc($facref[$i]["output"], 1);
+                    $level = $facref[$i]["maxlvl"];
+                    $icon = $facref[$i]["icon"];
 
-            if (!mysqli_stmt_prepare($stmt, $sql)) {
-                header("location: /NG/admanage.php?error=facrefstmtfail");
-                exit();
-            }
-            
-            mysqli_stmt_execute($stmt);
-            $q1 = mysqli_stmt_get_result($stmt);
-            mysqli_stmt_close($stmt);
+                    $data = [$facname, $icon, $count, $input, $output, $level];
 
-            $factories = json_decode(mysqli_fetch_assoc($q1)["factories"], true);
+                    makeGCard("factory", $data);
+                }
 
-            print_r($factories);
-
-            foreach ($factories as $f) {
-                print_r($f);
-                echo("<br>");
-            }
-
-            for ($i = 1; $i <= 1000; $i++) {
-                $data = [round(random_int(0, 120000)),1];
-                makeGCard("Factory", $data);
+                // for ($i = 1; $i <= 1000; $i++) {
+                //     $data = [round(random_int(0, 120000)),1];
+                //     makeGCard("Factory", $data);
+                // }
             }
         ?>
         </ul>

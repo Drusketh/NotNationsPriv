@@ -37,6 +37,9 @@ if (isset($_POST["submit"])) {
     }
 
     createNation($ng, $uid, $name, $capitol, $biome, $govt, $econ, $curtime);
+    header("location: ../index.php");
+    echo("made");
+    exit();
 }
 else {
     header("location: ../index.php");

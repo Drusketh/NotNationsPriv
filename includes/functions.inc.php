@@ -261,8 +261,11 @@ function createNation($ng, $uid, $name, $capitol, $biome, $govt, $econ, $curtime
     $basepop = 50000;
     $basetier = 1;
     $baseres = '{"money": 10000, "food": 1000, "power": 1000, "bm": 100, "cg": 65, "metal": 0, "ammunition": 0, "fuel": 0, "uranium": 0}';
+    $basecom = '{}';
+    $basefac = '{}';
 
-    $nsql = "INSERT INTO nation (uid, name, capitol, biome, government, econ, crtime, population, tier, resources) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+    $nsql = "INSERT INTO nation (uid, name, capitol, biome, government, econ, crtime, population, tier, resources, commodities, factories) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt = mysqli_stmt_init($ng);
 
     if (!mysqli_stmt_prepare($stmt, $nsql)) {
@@ -270,7 +273,7 @@ function createNation($ng, $uid, $name, $capitol, $biome, $govt, $econ, $curtime
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "isssiiiii", $uid, $name, $capitol, $biome, $govt, $econ, $curtime, $basepop, $basetier, $baseres);
+    mysqli_stmt_bind_param($stmt, "issiiiiiisss", $uid, $name, $capitol, $biome, $govt, $econ, $curtime, $basepop, $basetier, $baseres, $basecom, $basefac);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
 
@@ -374,7 +377,7 @@ function makeGCard($type, $data) {
     echo("
         <li class='tile'>
             <div class='ctitle'>
-                <h3 class='title'><img class='icon' src=$icon>$title</h3><br>
+                <h3 class='title'><img class='icon' src='img/resources/".$icon."'>$title</h3><br>
             </div>
     ");
     switch ($type) {
@@ -385,17 +388,45 @@ function makeGCard($type, $data) {
             $level = $data[5];
 
             echo("
-                <div>$count</div>
+                <div class='faccount'>$count</div>
                 <div> ");
                     for($ii = 0; $ii < count($input[0]); $ii++) {
                         $name = $input[1][$ii];
                         $ct = $input[0][$name];
-                        
+
                         echo("
-                        <p>
-                            <img class='ico' src='img/resources/".$name."_icon.webp'> " . $ct . "
-                        </p>
+                            </div>
+                            <p>input: </p> 
+                            <div class='icholder input'>
                         ");
+
+                        for($ii = 0; $ii < count($input[0]); $ii++) {
+                            $name = $input[1][$ii];
+                            $ct = $input[0][$name];
+
+                            echo("
+                            <p>
+                                <img class='ico' src='img/resources/".$name."_icon.webp'> " . $ct . "
+                            </p>
+                            ");
+                        }
+
+                        echo("
+                            </div>
+                            <p>produce: </p>
+                            <div class='icholder output'>
+                        ");
+
+                        for($oi = 0; $oi < count($output[0]); $oi++) {
+                            $name = $output[1][$oi];
+                            $ct = $output[0][$name];
+
+                            echo("
+                            <p>
+                                <img class='ico' src='img/resources/".$name."_icon.webp'> " . $ct . "
+                            </p>
+                            ");
+                        }
                     }
             echo("
                 </div>

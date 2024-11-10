@@ -59,29 +59,33 @@
 
                 $name = $facdata[$fid]["name"];
                 $cost = makeAssoc($facdata[$fid]["cost"], 1);
-
+                $modres = $usr_resources;
+                $modfac = $usr_factories;
+                
                 $i=0;
-                foreach ($cost[0] as $v) {
+                for ($i = 0; $i <= count($cost[0])-1; $i++) {
                     $cres = $cost[1][$i];
                     $camnt = $usr_resources[$cres];
-                    $tres = $v*$count;
+                    $tres = $cost[0][$cost[1][$i]]*$count;
                     $pass = 0;
                     
-                    $i++;
+                    
                     if ($camnt < $tres) {
                         $pass = 0;
+                        header("location: ../construct.php");
+                        exit();
                     }
                     else {
                         $pass = 1;
+                        $modres[$cres]-=$tres;
                     }
                 }
 
                 if ($pass = 1) {
-                    $usr_resources[$cres]-=$tres;
-                    $usr_factories[$name]+=$count;
+                    $modfac[$name]+=$count;
 
-                    $usr_resources = json_encode($usr_resources);
-                    $usr_factories = json_encode($usr_factories);
+                    $usr_resources = json_encode($modres);
+                    $usr_factories = json_encode($modfac);
                 }
                 else {
                     //Fail condition. Send back to construct page with an error. idk how they got here since the form should prevent them eventually.
@@ -127,8 +131,8 @@
             break;
         }
 
-        header("location: ../construct.php");
-        exit();
+        // header("location: ../construct.php");
+        // exit();
     }
     else {
         header("location: ../signup.php");

@@ -29,7 +29,10 @@ CREATE TABLE `nation` (
     government int(1) not null,
     econ int(1) not null,
     population int(9) not null,
-    tier int(10) not null
+    tier int(10) not null,
+    resources longtext not null,
+    commodities longtext not null,
+    factories text not null,
 );
 
 CREATE TABLE construct (
