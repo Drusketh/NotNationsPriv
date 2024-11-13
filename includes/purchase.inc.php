@@ -72,6 +72,9 @@
                     
                     if ($camnt < $tres) {
                         $pass = 0;
+
+                        print_r("fail");
+
                         header("location: ../construct.php");
                         exit();
                     }
@@ -90,17 +93,6 @@
                 else {
                     //Fail condition. Send back to construct page with an error. idk how they got here since the form should prevent them eventually.
                 }
-                
-                // $i=0;
-                // $facs = array();
-                // foreach ($facdata as $v) {
-                //     print_r($v["name"]);
-                //     echo("<br>");
-                //     $facs[$v["name"]] = 0;
-                //     $i++;
-                // }
-
-                // print_r(json_encode($facs));
 
                 if (true) {
                     $sql = "UPDATE `nation` SET resources=? WHERE `uid` = ?;";
@@ -131,8 +123,8 @@
             break;
         }
 
-        // header("location: ../construct.php");
-        // exit();
+        header("location: ../construct.php");
+        exit();
     }
     else {
         header("location: ../signup.php");

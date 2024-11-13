@@ -33,6 +33,7 @@
             <a href="nation.php">Home</a>
             <a href="factories.php">Factories</a>
             <a href="construct.php">Construct</a>
+            <a href="leaderboard.php">Leaderboard</a>
         </div>
 
         <div id="modal" class="modal">
